@@ -28,5 +28,5 @@ namespace BitcoinVietnam\BitcoinVietnam;
 class BitcoinVietnam
 {
     const API_URL = 'https://api.bitcoinvietnam.com.vn/api';
-    const APU_URL_TEST = 'http://bitcoinvn-api.localhost/api';
+    const APU_URL_TEST = 'https://test.api.bitcoinvietnam.com.vn/api';
 }
