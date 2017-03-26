@@ -23,6 +23,7 @@ namespace BitcoinVietnam\BitcoinVietnam\Model;
 
 use BitcoinVietnam\BitcoinVietnam\Model\Payout\Bank;
 use BitcoinVietnam\BitcoinVietnam\Model\Payout\Bitcoin;
+use BitcoinVietnam\BitcoinVietnam\Model\Payout\CashToId;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
@@ -46,6 +47,15 @@ class Payout
      * @Serializer\SerializedName("bitcoin")
      */
     private $bitcoin;
+
+    /**
+     * @var CashToId
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Payout\CashToId")
+     * @Serializer\SerializedName("cashToId")
+     */
+    private $cashToId;
+
 
     /**
      * @return Bank
@@ -80,6 +90,24 @@ class Payout
     public function setBitcoin($bitcoin)
     {
         $this->bitcoin = $bitcoin;
+        return $this;
+    }
+
+    /**
+     * @return CashToId
+     */
+    public function getCashToId()
+    {
+        return $this->cashToId;
+    }
+
+    /**
+     * @param CashToId $cashToId
+     * @return Payout
+     */
+    public function setCashToId($cashToId)
+    {
+        $this->cashToId = $cashToId;
         return $this;
     }
 }
