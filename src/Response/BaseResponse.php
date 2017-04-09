@@ -30,6 +30,16 @@ use JMS\Serializer\Annotation as Serializer;
 abstract class BaseResponse implements ResponseInterface
 {
     /**
+     * HTTP status
+     *
+     * @var int
+     *
+     * @Serializer\Type("integer")
+     * @Serializer\SerializedName("status")
+     */
+    private $status;
+
+    /**
      * Error message
      *
      * @var string
@@ -38,6 +48,14 @@ abstract class BaseResponse implements ResponseInterface
      * @Serializer\SerializedName("error")
      */
     protected $error;
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
     /**
      * @return mixed
