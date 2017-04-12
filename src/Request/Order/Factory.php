@@ -35,4 +35,13 @@ class Factory
     {
         return new GetOrder((string) $id);
     }
+
+    /**
+     * @param string $id
+     * @return PatchOrder
+     */
+    public function patchOrder($id)
+    {
+        return new PatchOrder($id);
+    }
 }

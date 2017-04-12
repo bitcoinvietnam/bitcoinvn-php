@@ -19,25 +19,55 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
 
-use BitcoinVietnam\BitcoinVietnam\Model\Order;
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order;
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetOrder
- * @package BitcoinVietnam\BitcoinVietnam\Response\Order
+ * Class PatchOrder
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order
  */
-class GetOrder extends BaseResponse
+class PatchOrder implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private $id;
+
     /**
      * @var Order
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Order")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order")
      * @Serializer\SerializedName("order")
      */
     private $order;
+
+    /**
+     * GetOrder constructor.
+     * @param string $id
+     */
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath()
+    {
+        return '/order/' . $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return Order
@@ -49,7 +79,7 @@ class GetOrder extends BaseResponse
 
     /**
      * @param Order $order
-     * @return GetOrder
+     * @return PatchOrder
      */
     public function setOrder($order)
     {

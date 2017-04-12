@@ -26,10 +26,10 @@ use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetOrder
+ * Class PatchOrder
  * @package BitcoinVietnam\BitcoinVietnam\Response\Order
  */
-class GetOrder extends BaseResponse
+class PatchOrder extends BaseResponse
 {
     /**
      * @var Order
@@ -49,7 +49,7 @@ class GetOrder extends BaseResponse
 
     /**
      * @param Order $order
-     * @return GetOrder
+     * @return PatchOrder
      */
     public function setOrder($order)
     {

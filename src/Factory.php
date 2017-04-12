@@ -36,14 +36,6 @@ class Factory
     }
 
     /**
-     * @return Response\Factory
-     */
-    public function response()
-    {
-        return new Response\Factory();
-    }
-
-    /**
      * @return Utils\Manager
      */
     public function utils()

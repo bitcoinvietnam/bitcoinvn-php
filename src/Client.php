@@ -21,8 +21,10 @@
 
 namespace BitcoinVietnam\BitcoinVietnam;
 
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order as OrderPatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
+use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
 use JMS\Serializer\Serializer;
 use Psr\Http\Message\ResponseInterface;
@@ -101,10 +103,31 @@ class Client
     public function getOrder($id)
     {
         return $this->serializer()->deserialize(
-            $this->sendRequest($this->factory->request()->order()->getOrder($id), 'GET')->getBody()->getContents(),
+            $this
+                ->sendRequest($this->factory->request()->order()->getOrder($id), 'GET')
+                ->getBody()
+                ->getContents(),
             GetOrder::class,
             'json'
         );
+    }
+
+    /**
+     * @param string $id
+     * @param OrderPatchOrder $patchOrder
+     * @return PatchOrder
+     */
+    public function patchOrder($id, OrderPatchOrder $patchOrder)
+    {
+        return $this->serializer()->deserialize(
+            $this
+                ->sendRequest($this->factory->request()->order()->patchOrder($id)->setOrder($patchOrder), 'PATCH')
+                ->getBody()
+                ->getContents(),
+            PatchOrder::class,
+            'json'
+        );
+
     }
 
     // END ORDER
