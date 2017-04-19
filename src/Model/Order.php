@@ -156,6 +156,16 @@ class Order
     private $cancelled;
 
     /**
+     * User data
+     *
+     * @var User
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\User")
+     * @Serializer\SerializedName("user")
+     */
+    private $user;
+
+    /**
      * @return string
      */
     public function getId()
@@ -386,6 +396,24 @@ class Order
     public function setCancelled($cancelled)
     {
         $this->cancelled = $cancelled;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return Order
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
         return $this;
     }
 }
