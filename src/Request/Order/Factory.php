@@ -37,11 +37,21 @@ class Factory
     }
 
     /**
+     * @param bool $open
+     * @param bool $cancelled
+     * @return GetOrders
+     */
+    public function getOrders($open, $cancelled)
+    {
+        return new GetOrders($open, $cancelled);
+    }
+
+    /**
      * @param string $id
      * @return PatchOrder
      */
     public function patchOrder($id)
     {
-        return new PatchOrder($id);
+        return new PatchOrder((string) $id);
     }
 }

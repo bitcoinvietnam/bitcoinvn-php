@@ -29,7 +29,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Class GetOrder
  * @package BitcoinVietnam\BitcoinVietnam\Response\Order
  */
-class GetOrder extends BaseResponse
+final class GetOrder extends BaseResponse
 {
     /**
      * @var Order

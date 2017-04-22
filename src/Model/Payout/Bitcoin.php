@@ -28,7 +28,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @package AppBundle\Api\Model\Payout
  */
-class Bitcoin extends BasePayout
+final class Bitcoin extends BasePayout
 {
     /**
      * Bitcoin address

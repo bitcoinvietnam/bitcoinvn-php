@@ -24,9 +24,11 @@ namespace BitcoinVietnam\BitcoinVietnam;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order as OrderPatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
+use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
 use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -41,9 +43,9 @@ class Client
     private $apiKey;
 
     /**
-     * @var bool
+     * @var Serializer
      */
-    private $test;
+    private $serializer;
 
     /**
      * @var string
@@ -61,20 +63,16 @@ class Client
     private $guzzle;
 
     /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    /**
      * Client constructor.
-     * @param string $apiKey
-     * @param bool $test
+     * @param $apiKey
+     * @param SerializerInterface $serializer
+     * @param string $url
      */
-    public function __construct($apiKey, $test = false)
+    public function __construct($apiKey, SerializerInterface $serializer, $url = BitcoinVietnam::API_URL)
     {
         $this->apiKey = $apiKey;
-        $this->test = $test;
-        $this->url = $this->test === true ? BitcoinVietnam::APU_URL_TEST : BitcoinVietnam::API_URL;
+        $this->serializer = $serializer;
+        $this->url = $url;
         $this->factory = Factory::create();
     }
 
@@ -85,7 +83,7 @@ class Client
      */
     public function getTicker()
     {
-        return $this->serializer()->deserialize(
+        return $this->serializer->deserialize(
             $this->sendRequest($this->factory->request()->ticker()->getTicker(), 'GET')->getBody()->getContents(),
             GetTicker::class,
             'json'
@@ -102,12 +100,38 @@ class Client
      */
     public function getOrder($id)
     {
-        return $this->serializer()->deserialize(
+        return $this->serializer->deserialize(
             $this
                 ->sendRequest($this->factory->request()->order()->getOrder($id), 'GET')
                 ->getBody()
                 ->getContents(),
             GetOrder::class,
+            'json'
+        );
+    }
+
+    /**
+     * @param bool $open
+     * @param bool $cancelled
+     * @param array $parameters
+     * @return GetOrders
+     */
+    public function getOrders($open = true, $cancelled = false, $parameters = [])
+    {
+        $requestModel = $this->factory->request()->order()->getOrders($open, $cancelled);
+        foreach ($parameters as $key => $value) {
+            $setter = 'set' . ucfirst($key);
+            if (method_exists($requestModel, $setter)) {
+                $requestModel->$setter($value);
+            }
+        }
+
+        return $this->serializer->deserialize(
+            $this
+                ->sendRequest($requestModel, 'GET')
+                ->getBody()
+                ->getContents(),
+            GetOrders::class,
             'json'
         );
     }
@@ -119,7 +143,7 @@ class Client
      */
     public function patchOrder($id, OrderPatchOrder $patchOrder)
     {
-        return $this->serializer()->deserialize(
+        return $this->serializer->deserialize(
             $this
                 ->sendRequest($this->factory->request()->order()->patchOrder($id)->setOrder($patchOrder), 'PATCH')
                 ->getBody()
@@ -141,7 +165,7 @@ class Client
     {
         return $this->guzzle()->request($method, $this->url . $request->getPath(), [
             'headers' => ['Content-Type' => 'application/json', 'APIKEY' => $this->apiKey],
-            'json' => $this->serializer()->toArray($request)
+            'json' => $this->serializer->toArray($request)
         ]);
     }
 
@@ -152,13 +176,5 @@ class Client
     private function guzzle()
     {
         return isset($this->guzzle) ? $this->guzzle : ($this->guzzle = $this->factory->utils()->guzzle());
-    }
-
-    /**
-     * @return Serializer
-     */
-    private function serializer()
-    {
-        return isset($this->serializer) ? $this->serializer : ($this->serializer = $this->factory->utils()->serializer());
     }
 }

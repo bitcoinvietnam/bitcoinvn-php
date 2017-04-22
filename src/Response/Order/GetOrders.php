@@ -19,15 +19,31 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Order;
+
+use BitcoinVietnam\BitcoinVietnam\Model\Order;
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class BitcoinVietnam
- * @package BitcoinVietnam\BitcoinVietnam
+ * Class GetOrders
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Order
  */
-class BitcoinVietnam
+final class GetOrders extends BaseResponse
 {
-    const API_URL = 'https://api.bitcoinvietnam.com.vn/api';
-    const API_URL_DEV = 'http://bitcoinvn-api.localhost/api';
-    const APU_URL_TEST = 'http://test.api.bitcoinvietnam.com.vn/api';
+    /**
+     * @var Order[]
+     *
+     * @Serializer\Type("array<BitcoinVietnam\BitcoinVietnam\Model\Order>")
+     * @Serializer\SerializedName("orders")
+     */
+    private $orders;
+
+    /**
+     * @return Order[]
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }

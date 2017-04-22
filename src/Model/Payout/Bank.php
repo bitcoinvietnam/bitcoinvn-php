@@ -28,7 +28,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @package AppBundle\Api\Model\Payout
  */
-class Bank extends BasePayout
+final class Bank extends BasePayout
 {
     /**
      * Name of the bank

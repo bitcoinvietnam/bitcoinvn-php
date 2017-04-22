@@ -27,7 +27,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Class CashToId
  * @package BitcoinVietnam\BitcoinVietnam\Model\Payout
  */
-class CashToId extends BasePayout
+final class CashToId extends BasePayout
 {
     /**
      * Full name of the recipient
@@ -36,9 +36,6 @@ class CashToId extends BasePayout
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("recipientName")
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
      */
     private $recipientName;
 
@@ -49,9 +46,6 @@ class CashToId extends BasePayout
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("recipientId")
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
      */
     private $recipientId;
 
@@ -62,9 +56,6 @@ class CashToId extends BasePayout
      *
      * @Serializer\Type("DateTime")
      * @Serializer\SerializedName("recipientIdDateOfIssue")
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("datetime")
      */
     private $recipientIdDateOfIssue;
 
@@ -75,9 +66,6 @@ class CashToId extends BasePayout
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("recipientIdPlaceOfIssue")
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
      */
     private $recipientIdPlaceOfIssue;
 
@@ -88,9 +76,6 @@ class CashToId extends BasePayout
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankName")
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
      */
     private $bankName;
 
@@ -101,9 +86,6 @@ class CashToId extends BasePayout
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankBranch")
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
      */
     private $bankBranch;
 
@@ -114,9 +96,6 @@ class CashToId extends BasePayout
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankLocation")
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
      */
     private $bankLocation;
 

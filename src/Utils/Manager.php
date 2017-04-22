@@ -49,6 +49,7 @@ class Manager
     public function serializer()
     {
         if (!isset($this->factory[__FUNCTION__])) {
+            AnnotationRegistry::registerAutoloadNamespace('JMS\Serializer\Annotation', __DIR__ . '/../vendor/jms/serializer/src');
             AnnotationRegistry::registerAutoloadNamespace('JMS\Serializer\Annotation', __DIR__ . '/../../vendor/jms/serializer/src');
             AnnotationRegistry::registerAutoloadNamespace('JMS\Serializer\Annotation', __DIR__ . '/../../../vendor/jms/serializer/src');
             AnnotationRegistry::registerAutoloadNamespace('JMS\Serializer\Annotation', __DIR__ . '/../../../../vendor/jms/serializer/src');
