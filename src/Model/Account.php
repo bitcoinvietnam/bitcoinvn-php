@@ -24,13 +24,13 @@ namespace BitcoinVietnam\BitcoinVietnam\Model;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class User
+ * Class Account
  * @package AppBundle\Api\Model\Order
  */
-class  User
+class  Account
 {
     /**
-     * User ID
+     * Account ID
      *
      * @var string
      *
@@ -40,7 +40,7 @@ class  User
     private $id;
 
     /**
-     * User name
+     * Account name
      *
      * @var string
      *
@@ -50,7 +50,7 @@ class  User
     private $name;
 
     /**
-     * User email
+     * Account email
      *
      * @var string
      *
@@ -58,6 +58,26 @@ class  User
      * @Serializer\SerializedName("email")
      */
     private $email;
+
+    /**
+     * Monthly trading limit in crypto currency
+     *
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("tradingLimit")
+     */
+    private $tradingLimit;
+
+    /**
+     * What is already used up of the trading limit
+     *
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("volumeUsed")
+     */
+    private $volumeUsed;
 
     /**
      * @return string
@@ -69,7 +89,7 @@ class  User
 
     /**
      * @param string $id
-     * @return User
+     * @return Account
      */
     public function setId($id)
     {
@@ -87,7 +107,7 @@ class  User
 
     /**
      * @param string $name
-     * @return User
+     * @return Account
      */
     public function setName($name)
     {
@@ -105,11 +125,47 @@ class  User
 
     /**
      * @param string $email
-     * @return User
+     * @return Account
      */
     public function setEmail($email)
     {
         $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getTradingLimit()
+    {
+        return $this->tradingLimit;
+    }
+
+    /**
+     * @param float $tradingLimit
+     * @return Account
+     */
+    public function setTradingLimit($tradingLimit)
+    {
+        $this->tradingLimit = $tradingLimit;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getVolumeUsed()
+    {
+        return $this->volumeUsed;
+    }
+
+    /**
+     * @param float $volumeUsed
+     * @return Account
+     */
+    public function setVolumeUsed($volumeUsed)
+    {
+        $this->volumeUsed = $volumeUsed;
         return $this;
     }
 }

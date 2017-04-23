@@ -156,14 +156,14 @@ class Order
     private $cancelled;
 
     /**
-     * User data
+     * Account data
      *
-     * @var User
+     * @var Account
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\User")
-     * @Serializer\SerializedName("user")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Account")
+     * @Serializer\SerializedName("account")
      */
-    private $user;
+    private $account;
 
     /**
      * @return string
@@ -400,20 +400,20 @@ class Order
     }
 
     /**
-     * @return User
+     * @return Account
      */
-    public function getUser()
+    public function getAccount()
     {
-        return $this->user;
+        return $this->account;
     }
 
     /**
-     * @param User $user
+     * @param Account $account
      * @return Order
      */
-    public function setUser($user)
+    public function setAccount($account)
     {
-        $this->user = $user;
+        $this->account = $account;
         return $this;
     }
 }
