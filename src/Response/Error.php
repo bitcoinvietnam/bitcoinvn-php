@@ -82,4 +82,12 @@ class Error
     {
         return $this->field;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->message;
+    }
 }
