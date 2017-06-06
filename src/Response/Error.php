@@ -24,44 +24,62 @@ namespace BitcoinVietnam\BitcoinVietnam\Response;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class BaseResponse
+ * Class Error
  * @package BitcoinVietnam\BitcoinVietnam\Response
  */
-abstract class BaseResponse implements ResponseInterface
+class Error
 {
     /**
-     * HTTP status
+     * Error code
      *
      * @var int
      *
      * @Serializer\Type("integer")
-     * @Serializer\SerializedName("status")
+     * @Serializer\SerializedName("code")
      */
-    private $status;
+    private $code;
 
     /**
-     * Error
+     * Error message
      *
-     * @var Error
+     * @var string
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Error")
-     * @Serializer\SerializedName("error")
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("message")
      */
-    protected $error;
+    private $message;
+
+    /**
+     * The field in which a problematic value has been submitted, if available
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("field")
+     */
+    private $field;
 
     /**
      * @return int
      */
-    public function getStatus()
+    public function getCode()
     {
-        return $this->status;
+        return $this->code;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getError()
+    public function getMessage()
     {
-        return $this->error;
+        return $this->message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getField()
+    {
+        return $this->field;
     }
 }
