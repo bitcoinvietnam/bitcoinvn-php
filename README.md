@@ -1,5 +1,6 @@
 # bitcoinvn-php
-https://api.bitcoinvietnam.com.vn
+
+https://api.bitcoin.vn
 
 # Composer installation #
 
