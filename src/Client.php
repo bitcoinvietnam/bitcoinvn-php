@@ -27,8 +27,6 @@ use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
-use JMS\Serializer\Serializer;
-use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -43,11 +41,6 @@ class Client
     private $apiKey;
 
     /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    /**
      * @var string
      */
     private $url;
@@ -58,20 +51,13 @@ class Client
     private $factory;
 
     /**
-     * @var \GuzzleHttp\Client
-     */
-    private $guzzle;
-
-    /**
      * Client constructor.
      * @param $apiKey
-     * @param SerializerInterface $serializer
      * @param string $url
      */
-    public function __construct($apiKey, SerializerInterface $serializer, $url = BitcoinVietnam::API_URL)
+    public function __construct($apiKey, $url = BitcoinVietnam::API_URL)
     {
         $this->apiKey = $apiKey;
-        $this->serializer = $serializer;
         $this->url = $url;
         $this->factory = Factory::create();
     }
@@ -83,7 +69,7 @@ class Client
      */
     public function getTicker()
     {
-        return $this->serializer->deserialize(
+        return $this->factory->utils()->serializer()->deserialize(
             $this->sendRequest($this->factory->request()->ticker()->getTicker(), 'GET')->getBody()->getContents(),
             GetTicker::class,
             'json'
@@ -100,7 +86,7 @@ class Client
      */
     public function getOrder($id)
     {
-        return $this->serializer->deserialize(
+        return $this->factory->utils()->serializer()->deserialize(
             $this
                 ->sendRequest($this->factory->request()->order()->getOrder($id), 'GET')
                 ->getBody()
@@ -126,7 +112,7 @@ class Client
             }
         }
 
-        return $this->serializer->deserialize(
+        return $this->factory->utils()->serializer()->deserialize(
             $this
                 ->sendRequest($requestModel, 'GET')
                 ->getBody()
@@ -143,7 +129,7 @@ class Client
      */
     public function patchOrder($id, OrderPatchOrder $patchOrder)
     {
-        return $this->serializer->deserialize(
+        return $this->factory->utils()->serializer()->deserialize(
             $this
                 ->sendRequest($this->factory->request()->order()->patchOrder($id)->setOrder($patchOrder), 'PATCH')
                 ->getBody()
@@ -163,18 +149,9 @@ class Client
      */
     private function sendRequest(RequestInterface $request, $method)
     {
-        return $this->guzzle()->request($method, $this->url . $request->getPath(), [
+        return $this->factory->utils()->guzzle()->request($method, $this->url . $request->getPath(), [
             'headers' => ['Content-Type' => 'application/json', 'APIKEY' => $this->apiKey],
-            'json' => $this->serializer->toArray($request)
+            'json' => $this->factory->utils()->serializer()->toArray($request)
         ]);
-    }
-
-
-    /**
-     * @return \GuzzleHttp\Client
-     */
-    private function guzzle()
-    {
-        return isset($this->guzzle) ? $this->guzzle : ($this->guzzle = $this->factory->utils()->guzzle());
     }
 }

@@ -1,16 +1,23 @@
 # bitcoinvn-php
 https://api.bitcoinvietnam.com.vn
 
-## Installation
-`composer require bitcoinvietnam/bitcoinvietnam-php`
+# Composer installation #
+
+Add the following to your composer.json:
+
+```json
+{
+    "require": {
+        "bitcoinvietnam/bitcoinvietnam-php": "@dev"
+    }
+}
+```
 
 ## Usage
-You need two things to initiate a client:
-* API Key
-* A serializer object (must implement SerializerInterface, see JMS/Serializer)
+
+Instantiate a Client object
 
 ```php
 $apiKey = 'MY_API_KEY';
-$serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-$client = new \BitcoinVietnam\BitcoinVietnam\Client($apiKey, $serializer);
+$client = new \BitcoinVietnam\BitcoinVietnam\Client($apiKey);
 ```

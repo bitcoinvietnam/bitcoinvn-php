@@ -1,12 +1,12 @@
 {
     "name": "bitcoinvietnam/bitcoinvietnam-php",
-    "description": "A library to interact with the Bitcoin Vietnam API",
+    "description": "A PHP library to interact with the Bitcoin Vietnam API",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Alex Winter",
-            "email": "alex@bitcoinvietnam.com.vn"
+            "email": "alex@bitcoin.vn"
         }
     ],
     "require": {
