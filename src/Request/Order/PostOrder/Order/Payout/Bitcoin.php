@@ -19,87 +19,49 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
 
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
-use BitcoinVietnam\BitcoinVietnam\Response\GetTicker\FeeStructure;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetTicker
- * @package BitcoinVietnam\BitcoinVietnam\Response\Ticker
+ * Class Bitcoin
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-final class GetTicker extends BaseResponse
+class Bitcoin implements PayoutInterface
 {
     /**
-     * Currency code
+     * Bitcoin address
      *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("currency")
+     * @Serializer\SerializedName("address")
      */
-    private $currency;
-
-    /**
-     * Buy rate
-     *
-     * @var string
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("buy")
-     */
-    private $buy;
-
-    /**
-     * Sell rate
-     *
-     * @var string
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("sell")
-     */
-    private $sell;
-
-    /**
-     * Fee structure
-     *
-     * @var FeeStructure
-     *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker\FeeStructure")
-     * @Serializer\SerializedName("feeStructure")
-     */
-    private $feeStructure;
+    private $address;
 
     /**
      * @return string
      */
-    public function getCurrency()
+    public function getPayoutDataSetter()
     {
-        return $this->currency;
+        return 'setBitcoin';
     }
 
     /**
      * @return string
      */
-    public function getBuy()
+    public function getAddress()
     {
-        return $this->buy;
+        return $this->address;
     }
 
     /**
-     * @return string
+     * @param string $address
+     * @return Bitcoin
      */
-    public function getSell()
+    public function setAddress($address)
     {
-        return $this->sell;
-    }
-
-    /**
-     * @return FeeStructure
-     */
-    public function getFeeStructure()
-    {
-        return $this->feeStructure;
+        $this->address = $address;
+        return $this;
     }
 }

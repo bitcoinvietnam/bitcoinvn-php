@@ -22,11 +22,16 @@
 namespace BitcoinVietnam\BitcoinVietnam;
 
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order as OrderPatchOrder;
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order as OrderPostOrder;
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\PayoutInterface;
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
+use BitcoinVietnam\BitcoinVietnam\Response\Order\PostOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
+use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -137,7 +142,26 @@ class Client
             PatchOrder::class,
             'json'
         );
+    }
 
+    /**
+     * @param OrderPostOrder $postOrder
+     * @param PayoutInterface $payout
+     * @return PostOrder
+     */
+    public function postOrder(OrderPostOrder $postOrder, PayoutInterface $payout)
+    {
+        $postOrder->getPayout()->setPayout($payout);
+        $requestModel = $this->factory->request()->order()->postOrder()->setOrder($postOrder);
+
+        return $this->factory->utils()->serializer()->deserialize(
+            $this
+                ->sendRequest($requestModel, 'POST')
+                ->getBody()
+                ->getContents(),
+            PostOrder::class,
+            'json'
+        );
     }
 
     // END ORDER
@@ -149,9 +173,13 @@ class Client
      */
     private function sendRequest(RequestInterface $request, $method)
     {
-        return $this->factory->utils()->guzzle()->request($method, $this->url . $request->getPath(), [
-            'headers' => ['Content-Type' => 'application/json', 'APIKEY' => $this->apiKey],
-            'json' => $this->factory->utils()->serializer()->toArray($request)
-        ]);
+        try {
+            return $this->factory->utils()->guzzle()->request($method, $this->url . $request->getPath(), [
+                'headers' => ['Content-Type' => 'application/json', 'APIKEY' => $this->apiKey],
+                'json' => $this->factory->utils()->serializer()->toArray($request)
+            ]);
+        } catch (ClientException $exception) {
+            return $exception->getResponse();
+        }
     }
 }

@@ -19,87 +19,57 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
 
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
-use BitcoinVietnam\BitcoinVietnam\Response\GetTicker\FeeStructure;
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order;
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetTicker
- * @package BitcoinVietnam\BitcoinVietnam\Response\Ticker
+ * Class PostOrder
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order
  */
-final class GetTicker extends BaseResponse
+class PostOrder implements RequestInterface
 {
     /**
-     * Currency code
+     * @var Order
      *
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("currency")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order")
+     * @Serializer\SerializedName("order")
      */
-    private $currency;
+    private $order;
 
     /**
-     * Buy rate
-     *
-     * @var string
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("buy")
+     * PostOrder constructor.
      */
-    private $buy;
-
-    /**
-     * Sell rate
-     *
-     * @var string
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("sell")
-     */
-    private $sell;
-
-    /**
-     * Fee structure
-     *
-     * @var FeeStructure
-     *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker\FeeStructure")
-     * @Serializer\SerializedName("feeStructure")
-     */
-    private $feeStructure;
-
-    /**
-     * @return string
-     */
-    public function getCurrency()
+    public function __construct()
     {
-        return $this->currency;
+        $this->order = new Order();
     }
 
     /**
      * @return string
      */
-    public function getBuy()
+    public function getPath()
     {
-        return $this->buy;
+        return '/order';
     }
 
     /**
-     * @return string
+     * @return Order
      */
-    public function getSell()
+    public function getOrder()
     {
-        return $this->sell;
+        return $this->order;
     }
 
     /**
-     * @return FeeStructure
+     * @param Order $order
+     * @return PostOrder
      */
-    public function getFeeStructure()
+    public function setOrder($order)
     {
-        return $this->feeStructure;
+        $this->order = $order;
+        return $this;
     }
 }

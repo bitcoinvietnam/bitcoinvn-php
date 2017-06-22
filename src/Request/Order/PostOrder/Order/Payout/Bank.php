@@ -19,19 +19,18 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Model\Payout;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Bank
- *
- * @package AppBundle\Api\Model\Payout
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-final class Bank extends ContactablePayout
+final class Bank extends ContactablePayout implements PayoutInterface
 {
     /**
-     * Name of the bank
+     * Bank name
      *
      * @var string
      *
@@ -41,7 +40,7 @@ final class Bank extends ContactablePayout
     private $bankName;
 
     /**
-     * Branch of the bank
+     * Bank branch
      *
      * @var string
      *
@@ -51,7 +50,7 @@ final class Bank extends ContactablePayout
     private $bankBranch;
 
     /**
-     * Account number
+     * Number of bank account
      *
      * @var string
      *
@@ -61,7 +60,7 @@ final class Bank extends ContactablePayout
     private $accountNumber;
 
     /**
-     * Holder of the bank account
+     * Holder of bank account
      *
      * @var string
      *
@@ -71,7 +70,7 @@ final class Bank extends ContactablePayout
     private $accountHolder;
 
     /**
-     * Swift code, if available
+     * Swift
      *
      * @var string
      *
@@ -79,6 +78,14 @@ final class Bank extends ContactablePayout
      * @Serializer\SerializedName("swift")
      */
     private $swift;
+
+    /**
+     * @return string
+     */
+    public function getPayoutDataSetter()
+    {
+        return 'setBank';
+    }
 
     /**
      * @return string

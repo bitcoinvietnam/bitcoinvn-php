@@ -19,87 +19,85 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
 
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
-use BitcoinVietnam\BitcoinVietnam\Response\GetTicker\FeeStructure;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetTicker
- * @package BitcoinVietnam\BitcoinVietnam\Response\Ticker
+ * Class FeeStructure
+ * @package BitcoinVietnam\BitcoinVietnam\Response\GetTicker
  */
-final class GetTicker extends BaseResponse
+class FeeStructure
 {
     /**
-     * Currency code
+     * Fee rate
      *
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("currency")
-     */
-    private $currency;
-
-    /**
-     * Buy rate
-     *
-     * @var string
+     * @var float
      *
      * @Serializer\Type("float")
-     * @Serializer\SerializedName("buy")
+     * @Serializer\SerializedName("feeRate")
      */
-    private $buy;
+    private $feeRate;
 
     /**
-     * Sell rate
+     * Fee rate for VIP users
      *
-     * @var string
+     * @var float
      *
      * @Serializer\Type("float")
-     * @Serializer\SerializedName("sell")
+     * @Serializer\SerializedName("feeRateVip")
      */
-    private $sell;
+    private $feeRateVip;
 
     /**
-     * Fee structure
+     * Fixed fee for buy orders
      *
-     * @var FeeStructure
+     * @var float
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker\FeeStructure")
-     * @Serializer\SerializedName("feeStructure")
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("fixedFeeBuy")
      */
-    private $feeStructure;
+    private $fixedFeeBuy;
 
     /**
-     * @return string
+     * Fixed fee for sell orders
+     *
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("fixedFeeSell")
      */
-    public function getCurrency()
+    private $fixedFeeSell;
+
+    /**
+     * @return float
+     */
+    public function getFeeRate()
     {
-        return $this->currency;
+        return $this->feeRate;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getBuy()
+    public function getFeeRateVip()
     {
-        return $this->buy;
+        return $this->feeRateVip;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getSell()
+    public function getFixedFeeBuy()
     {
-        return $this->sell;
+        return $this->fixedFeeBuy;
     }
 
     /**
-     * @return FeeStructure
+     * @return float
      */
-    public function getFeeStructure()
+    public function getFixedFeeSell()
     {
-        return $this->feeStructure;
+        return $this->fixedFeeSell;
     }
 }

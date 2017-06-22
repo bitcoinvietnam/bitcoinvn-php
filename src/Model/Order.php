@@ -156,16 +156,6 @@ class Order
     private $cancelled;
 
     /**
-     * Account data
-     *
-     * @var Account
-     *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Account")
-     * @Serializer\SerializedName("account")
-     */
-    private $account;
-
-    /**
      * @return string
      */
     public function getId()
@@ -396,24 +386,6 @@ class Order
     public function setCancelled($cancelled)
     {
         $this->cancelled = $cancelled;
-        return $this;
-    }
-
-    /**
-     * @return Account
-     */
-    public function getAccount()
-    {
-        return $this->account;
-    }
-
-    /**
-     * @param Account $account
-     * @return Order
-     */
-    public function setAccount($account)
-    {
-        $this->account = $account;
         return $this;
     }
 }

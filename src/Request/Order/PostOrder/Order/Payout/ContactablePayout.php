@@ -19,87 +19,65 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
 
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
-use BitcoinVietnam\BitcoinVietnam\Response\GetTicker\FeeStructure;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetTicker
- * @package BitcoinVietnam\BitcoinVietnam\Response\Ticker
+ * Class ContactablePayout
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-final class GetTicker extends BaseResponse
+abstract class ContactablePayout
 {
     /**
-     * Currency code
-     *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("currency")
+     * @Serializer\SerializedName("contactEmail")
      */
-    private $currency;
+    protected $contactEmail;
 
     /**
-     * Buy rate
-     *
      * @var string
      *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("buy")
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("contactPhone")
      */
-    private $buy;
-
-    /**
-     * Sell rate
-     *
-     * @var string
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("sell")
-     */
-    private $sell;
-
-    /**
-     * Fee structure
-     *
-     * @var FeeStructure
-     *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker\FeeStructure")
-     * @Serializer\SerializedName("feeStructure")
-     */
-    private $feeStructure;
+    protected $contactPhone;
 
     /**
      * @return string
      */
-    public function getCurrency()
+    public function getContactEmail()
     {
-        return $this->currency;
+        return $this->contactEmail;
+    }
+
+    /**
+     * @param string $contactEmail
+     * @return ContactablePayout
+     */
+    public function setContactEmail($contactEmail)
+    {
+        $this->contactEmail = $contactEmail;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getBuy()
+    public function getContactPhone()
     {
-        return $this->buy;
+        return $this->contactPhone;
     }
 
     /**
-     * @return string
+     * @param string $contactPhone
+     * @return ContactablePayout
      */
-    public function getSell()
+    public function setContactPhone($contactPhone)
     {
-        return $this->sell;
-    }
-
-    /**
-     * @return FeeStructure
-     */
-    public function getFeeStructure()
-    {
-        return $this->feeStructure;
+        $this->contactPhone = $contactPhone;
+        return $this;
     }
 }
