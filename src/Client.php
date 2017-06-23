@@ -25,13 +25,12 @@ use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order as OrderPatchOr
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order as OrderPostOrder;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\PayoutInterface;
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PostOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
-use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -178,7 +177,7 @@ class Client
                 'headers' => ['Content-Type' => 'application/json', 'APIKEY' => $this->apiKey],
                 'json' => $this->factory->utils()->serializer()->toArray($request)
             ]);
-        } catch (ClientException $exception) {
+        } catch (RequestException $exception) {
             return $exception->getResponse();
         }
     }
