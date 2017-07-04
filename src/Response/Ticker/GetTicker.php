@@ -22,7 +22,7 @@
 namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker;
 
 use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
-use BitcoinVietnam\BitcoinVietnam\Response\GetTicker\FeeStructure;
+use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker\FeeStructure;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
