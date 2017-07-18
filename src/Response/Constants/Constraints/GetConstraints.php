@@ -19,35 +19,62 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints;
+
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class GetConstraints
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints
  */
-class Factory
+class GetConstraints extends BaseResponse
 {
     /**
-     * @return Constants\Factory
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("minVolumeBuy")
      */
-    public function constants()
+    private $minVolumeBuy;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("minVolumeSell")
+     */
+    private $minVolumeSell;
+
+    /**
+     * @var string[]
+     *
+     * @Serializer\Type("array<string>")
+     * @Serializer\SerializedName("supportedBanks")
+     */
+    private $supportedBanks;
+
+    /**
+     * @return float
+     */
+    public function getMinVolumeBuy()
     {
-        return new Constants\Factory();
+        return $this->minVolumeBuy;
     }
 
     /**
-     * @return Order\Factory
+     * @return float
      */
-    public function order()
+    public function getMinVolumeSell()
     {
-        return new Order\Factory();
+        return $this->minVolumeSell;
     }
 
     /**
-     * @return Ticker\Factory
+     * @return \string[]
      */
-    public function ticker()
+    public function getSupportedBanks()
     {
-        return new Ticker\Factory();
+        return $this->supportedBanks;
     }
 }

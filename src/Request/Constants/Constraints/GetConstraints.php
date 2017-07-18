@@ -19,35 +19,21 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Constants\Constraints;
+
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class GetConstraints
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Constants\Constraints
  */
-class Factory
+class GetConstraints implements RequestInterface
 {
     /**
-     * @return Constants\Factory
+     * @return string
      */
-    public function constants()
+    public function getPath()
     {
-        return new Constants\Factory();
-    }
-
-    /**
-     * @return Order\Factory
-     */
-    public function order()
-    {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Ticker\Factory
-     */
-    public function ticker()
-    {
-        return new Ticker\Factory();
+        return '/constants/constraints';
     }
 }
