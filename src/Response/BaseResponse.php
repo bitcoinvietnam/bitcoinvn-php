@@ -58,7 +58,7 @@ abstract class BaseResponse implements ResponseInterface
     }
 
     /**
-     * @return mixed
+     * @return Error
      */
     public function getError()
     {

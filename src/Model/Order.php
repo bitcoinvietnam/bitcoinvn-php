@@ -90,6 +90,16 @@ class Order
     private $fiatAmount;
 
     /**
+     * Desired amount in fiat currency
+     *
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("desiredFiatAmount")
+     */
+    private $desiredFiatAmount;
+
+    /**
      * @var Payout
      *
      * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Payout")
@@ -260,6 +270,24 @@ class Order
     public function setFiatAmount($fiatAmount)
     {
         $this->fiatAmount = $fiatAmount;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getDesiredFiatAmount()
+    {
+        return $this->desiredFiatAmount;
+    }
+
+    /**
+     * @param float $desiredFiatAmount
+     * @return Order
+     */
+    public function setDesiredFiatAmount($desiredFiatAmount)
+    {
+        $this->desiredFiatAmount = $desiredFiatAmount;
         return $this;
     }
 
