@@ -45,6 +45,13 @@ class GetOrders implements RequestInterface
     private $cancelled;
 
     /**
+     * @var string
+     *
+     * @Serializer\Exclude
+     */
+    private $type;
+
+    /**
      * @var int
      *
      * @Serializer\Type("integer")
@@ -72,11 +79,13 @@ class GetOrders implements RequestInterface
      * GetOrders constructor.
      * @param bool $open
      * @param bool $cancelled
+     * @param string $type
      */
-    public function __construct($open, $cancelled)
+    public function __construct($open, $cancelled, $type = null)
     {
         $this->open = $open;
         $this->cancelled = $cancelled;
+        $this->type = $type;
     }
 
     /**
@@ -84,7 +93,7 @@ class GetOrders implements RequestInterface
      */
     public function getPath()
     {
-        return '/orders?open=' . $this->open . '&cancelled=' . $this->cancelled;
+        return '/orders?open=' . $this->open . '&cancelled=' . $this->cancelled . ($this->type ? '&type=' . $this->type : '');
     }
 
     /**

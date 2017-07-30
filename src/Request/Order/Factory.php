@@ -39,11 +39,12 @@ class Factory
     /**
      * @param bool $open
      * @param bool $cancelled
+     * @param string $type
      * @return GetOrders
      */
-    public function getOrders($open, $cancelled)
+    public function getOrders($open, $cancelled, $type = null)
     {
-        return new GetOrders($open, $cancelled);
+        return new GetOrders($open, $cancelled, $type);
     }
 
     /**

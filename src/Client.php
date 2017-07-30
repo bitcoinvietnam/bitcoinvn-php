@@ -120,12 +120,13 @@ class Client
     /**
      * @param bool $open
      * @param bool $cancelled
+     * @param string $type
      * @param array $parameters
      * @return GetOrders
      */
-    public function getOrders($open = true, $cancelled = false, $parameters = [])
+    public function getOrders($open = true, $cancelled = false, $type = null, $parameters = [])
     {
-        $requestModel = $this->factory->request()->order()->getOrders($open, $cancelled);
+        $requestModel = $this->factory->request()->order()->getOrders($open, $cancelled, $type);
         foreach ($parameters as $key => $value) {
             $setter = 'set' . ucfirst($key);
             if (method_exists($requestModel, $setter)) {
