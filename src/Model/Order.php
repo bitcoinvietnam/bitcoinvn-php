@@ -50,6 +50,16 @@ class Order
     private $type;
 
     /**
+     * Symbol of crypto currency
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("cryptoCurrency")
+     */
+    private $cryptoCurrency;
+
+    /**
      * Order fees
      *
      * @var Fees
@@ -174,16 +184,6 @@ class Order
     }
 
     /**
-     * @param string $id
-     * @return Order
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getType()
@@ -192,13 +192,11 @@ class Order
     }
 
     /**
-     * @param string $type
-     * @return Order
+     * @return string
      */
-    public function setType($type)
+    public function getCryptoCurrency()
     {
-        $this->type = $type;
-        return $this;
+        return $this->cryptoCurrency;
     }
 
     /**
@@ -210,31 +208,11 @@ class Order
     }
 
     /**
-     * @param Fees $fees
-     * @return Order
-     */
-    public function setFees($fees)
-    {
-        $this->fees = $fees;
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getRate()
     {
         return $this->rate;
-    }
-
-    /**
-     * @param float $rate
-     * @return Order
-     */
-    public function setRate($rate)
-    {
-        $this->rate = $rate;
-        return $this;
     }
 
     /**
@@ -246,31 +224,11 @@ class Order
     }
 
     /**
-     * @param float $cryptoAmount
-     * @return Order
-     */
-    public function setCryptoAmount($cryptoAmount)
-    {
-        $this->cryptoAmount = $cryptoAmount;
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getFiatAmount()
     {
         return $this->fiatAmount;
-    }
-
-    /**
-     * @param float $fiatAmount
-     * @return Order
-     */
-    public function setFiatAmount($fiatAmount)
-    {
-        $this->fiatAmount = $fiatAmount;
-        return $this;
     }
 
     /**
@@ -282,31 +240,11 @@ class Order
     }
 
     /**
-     * @param float $desiredFiatAmount
-     * @return Order
-     */
-    public function setDesiredFiatAmount($desiredFiatAmount)
-    {
-        $this->desiredFiatAmount = $desiredFiatAmount;
-        return $this;
-    }
-
-    /**
      * @return Payout
      */
     public function getPayout()
     {
         return $this->payout;
-    }
-
-    /**
-     * @param Payout $payout
-     * @return Order
-     */
-    public function setPayout($payout)
-    {
-        $this->payout = $payout;
-        return $this;
     }
 
     /**
@@ -318,16 +256,6 @@ class Order
     }
 
     /**
-     * @param Payment $payment
-     * @return Order
-     */
-    public function setPayment($payment)
-    {
-        $this->payment = $payment;
-        return $this;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCreated()
@@ -336,31 +264,11 @@ class Order
     }
 
     /**
-     * @param \DateTime $created
-     * @return Order
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
-    }
-
-    /**
-     * @return boolean
+     * @return bool
      */
     public function isPaid()
     {
         return $this->paid;
-    }
-
-    /**
-     * @param boolean $paid
-     * @return Order
-     */
-    public function setPaid($paid)
-    {
-        $this->paid = $paid;
-        return $this;
     }
 
     /**
@@ -372,17 +280,7 @@ class Order
     }
 
     /**
-     * @param \DateTime $paidAt
-     * @return Order
-     */
-    public function setPaidAt($paidAt)
-    {
-        $this->paidAt = $paidAt;
-        return $this;
-    }
-
-    /**
-     * @return boolean
+     * @return bool
      */
     public function isOpen()
     {
@@ -390,30 +288,10 @@ class Order
     }
 
     /**
-     * @param boolean $open
-     * @return Order
-     */
-    public function setOpen($open)
-    {
-        $this->open = $open;
-        return $this;
-    }
-
-    /**
-     * @return boolean
+     * @return bool
      */
     public function isCancelled()
     {
         return $this->cancelled;
-    }
-
-    /**
-     * @param boolean $cancelled
-     * @return Order
-     */
-    public function setCancelled($cancelled)
-    {
-        $this->cancelled = $cancelled;
-        return $this;
     }
 }

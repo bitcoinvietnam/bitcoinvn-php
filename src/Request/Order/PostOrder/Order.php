@@ -41,6 +41,16 @@ class Order
     private $type;
 
     /**
+     * Symbol of crypto currency
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("type")
+     */
+    private $cryptoCurrency;
+
+    /**
      * Payment amount in crypto currency
      *
      * @var float
@@ -121,6 +131,24 @@ class Order
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCryptoCurrency()
+    {
+        return $this->cryptoCurrency;
+    }
+
+    /**
+     * @param string $cryptoCurrency
+     * @return Order
+     */
+    public function setCryptoCurrency($cryptoCurrency)
+    {
+        $this->cryptoCurrency = $cryptoCurrency;
         return $this;
     }
 

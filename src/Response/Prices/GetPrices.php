@@ -19,43 +19,32 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Prices;
+
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices\Currency;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class GetPrices
+ *
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Prices
  */
-class Factory
+class GetPrices extends BaseResponse
 {
     /**
-     * @return Constants\Factory
+     * @var Currency[]
+     *
+     * @Serializer\Type("array<string,BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices\Currency>")
+     * @Serializer\SerializedName("currencies")
      */
-    public function constants()
-    {
-        return new Constants\Factory();
-    }
+    private $currencies;
 
     /**
-     * @return Order\Factory
+     * @return Currency[]
      */
-    public function order()
+    public function getCurrencies()
     {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
-    }
-
-    /**
-     * @return Ticker\Factory
-     */
-    public function ticker()
-    {
-        return new Ticker\Factory();
+        return $this->currencies;
     }
 }
