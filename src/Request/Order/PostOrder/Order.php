@@ -46,7 +46,7 @@ class Order
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("type")
+     * @Serializer\SerializedName("cryptoCurrency")
      */
     private $cryptoCurrency;
 
