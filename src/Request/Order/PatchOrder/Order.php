@@ -70,6 +70,16 @@ class Order
     private $rate;
 
     /**
+     * Amount
+     *
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("amount")
+     */
+    private $amount;
+
+    /**
      * @return bool
      */
     public function isPaid()
@@ -138,6 +148,24 @@ class Order
     public function setRate($rate)
     {
         $this->rate = $rate;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param float $amount
+     * @return Order
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
         return $this;
     }
 }
