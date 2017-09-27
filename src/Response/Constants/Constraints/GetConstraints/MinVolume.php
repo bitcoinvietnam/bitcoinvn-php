@@ -19,47 +19,61 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints;
 
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
-use BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints\MinVolume;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetConstraints
- * @package BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints
+ * Class MinVolume
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints
  */
-class GetConstraints extends BaseResponse
+class MinVolume
 {
     /**
-     * @var MinVolume[]
+     * @var string
      *
-     * @Serializer\Type("array<string, BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints\MinVolume>")
-     * @Serializer\SerializedName("minVolumes")
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("symbol")
      */
-    private $minVolumes = [];
+    private $symbol;
 
     /**
-     * @var string[]
+     * @var float
      *
-     * @Serializer\Type("array<string>")
-     * @Serializer\SerializedName("supportedBanks")
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("buy")
      */
-    private $supportedBanks;
+    private $buy;
 
     /**
-     * @return MinVolume[]
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("sell")
      */
-    public function getMinVolumes()
+    private $sell;
+
+    /**
+     * @return string
+     */
+    public function getSymbol()
     {
-        return $this->minVolumes;
+        return $this->symbol;
     }
 
     /**
-     * @return \string[]
+     * @return float
      */
-    public function getSupportedBanks()
+    public function getBuy()
     {
-        return $this->supportedBanks;
+        return $this->buy;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSell()
+    {
+        return $this->sell;
     }
 }
