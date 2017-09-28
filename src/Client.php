@@ -21,14 +21,23 @@
 
 namespace BitcoinVietnam\BitcoinVietnam;
 
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order as OrderPatchOrder;
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order as OrderPostOrder;
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\PayoutInterface;
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
+use BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
+use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
+use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
+use BitcoinVietnam\BitcoinVietnam\Response\Order\PostOrder;
+use BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices;
 use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
-use JMS\Serializer\Serializer;
+use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Client
+ *
  * @package BitcoinVietnam
  */
 class Client
@@ -37,11 +46,6 @@ class Client
      * @var string
      */
     private $apiKey;
-
-    /**
-     * @var bool
-     */
-    private $test;
 
     /**
      * @var string
@@ -54,36 +58,59 @@ class Client
     private $factory;
 
     /**
-     * @var \GuzzleHttp\Client
-     */
-    private $guzzle;
-
-    /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    /**
      * Client constructor.
-     * @param string $apiKey
-     * @param bool $test
+     *
+     * @param $apiKey
+     * @param string $url
      */
-    public function __construct($apiKey, $test = false)
+    public function __construct($apiKey, $url = BitcoinVietnam::API_URL)
     {
         $this->apiKey = $apiKey;
-        $this->test = $test;
-        $this->url = $this->test === true ? BitcoinVietnam::APU_URL_TEST : BitcoinVietnam::API_URL;
+        $this->url = $url;
         $this->factory = Factory::create();
     }
+
+    // CONSTANTS //
+
+    /**
+     * @return GetConstraints
+     */
+    public function getConstraints()
+    {
+        return $this->factory->utils()->serializer()->deserialize(
+            $this->sendRequest($this->factory->request()->constants()->constraints()->getConstraints(), 'GET')->getBody()->getContents(),
+            GetConstraints::class,
+            'json'
+        );
+    }
+
+    // END CONSTANTS //
+
+    /**
+     * @return GetPrices
+     */
+    public function getPrices()
+    {
+        return $this->factory->utils()->serializer()->deserialize(
+            $this->sendRequest($this->factory->request()->prices()->getPrices(), 'GET')->getBody()->getContents(),
+            GetPrices::class,
+            'json'
+        );
+    }
+
+
+    // END PRICES //
+
 
     // TICKER //
 
     /**
      * @return GetTicker
+     * @deprecated Use Client::getPrices() instead
      */
     public function getTicker()
     {
-        return $this->serializer()->deserialize(
+        return $this->factory->utils()->serializer()->deserialize(
             $this->sendRequest($this->factory->request()->ticker()->getTicker(), 'GET')->getBody()->getContents(),
             GetTicker::class,
             'json'
@@ -100,9 +127,76 @@ class Client
      */
     public function getOrder($id)
     {
-        return $this->serializer()->deserialize(
-            $this->sendRequest($this->factory->request()->order()->getOrder($id), 'GET')->getBody()->getContents(),
+        return $this->factory->utils()->serializer()->deserialize(
+            $this
+                ->sendRequest($this->factory->request()->order()->getOrder($id), 'GET')
+                ->getBody()
+                ->getContents(),
             GetOrder::class,
+            'json'
+        );
+    }
+
+    /**
+     * @param bool $open
+     * @param bool $cancelled
+     * @param string $type
+     * @param array $parameters
+     * @return GetOrders
+     */
+    public function getOrders($open = true, $cancelled = false, $type = null, $parameters = [])
+    {
+        $requestModel = $this->factory->request()->order()->getOrders($open, $cancelled, $type);
+        foreach ($parameters as $key => $value) {
+            $setter = 'set' . ucfirst($key);
+            if (method_exists($requestModel, $setter)) {
+                $requestModel->$setter($value);
+            }
+        }
+
+        return $this->factory->utils()->serializer()->deserialize(
+            $this
+                ->sendRequest($requestModel, 'GET')
+                ->getBody()
+                ->getContents(),
+            GetOrders::class,
+            'json'
+        );
+    }
+
+    /**
+     * @param string $id
+     * @param OrderPatchOrder $patchOrder
+     * @return PatchOrder
+     */
+    public function patchOrder($id, OrderPatchOrder $patchOrder)
+    {
+        return $this->factory->utils()->serializer()->deserialize(
+            $this
+                ->sendRequest($this->factory->request()->order()->patchOrder($id)->setOrder($patchOrder), 'PATCH')
+                ->getBody()
+                ->getContents(),
+            PatchOrder::class,
+            'json'
+        );
+    }
+
+    /**
+     * @param OrderPostOrder $postOrder
+     * @param PayoutInterface $payout
+     * @return PostOrder
+     */
+    public function postOrder(OrderPostOrder $postOrder, PayoutInterface $payout)
+    {
+        $postOrder->getPayout()->setPayout($payout);
+        $requestModel = $this->factory->request()->order()->postOrder()->setOrder($postOrder);
+
+        return $this->factory->utils()->serializer()->deserialize(
+            $this
+                ->sendRequest($requestModel, 'POST')
+                ->getBody()
+                ->getContents(),
+            PostOrder::class,
             'json'
         );
     }
@@ -116,26 +210,13 @@ class Client
      */
     private function sendRequest(RequestInterface $request, $method)
     {
-        return $this->guzzle()->request($method, $this->url . $request->getPath(), [
-            'headers' => ['Content-Type' => 'application/json', 'APIKEY' => $this->apiKey],
-            'json' => $this->serializer()->toArray($request)
-        ]);
-    }
-
-
-    /**
-     * @return \GuzzleHttp\Client
-     */
-    private function guzzle()
-    {
-        return isset($this->guzzle) ? $this->guzzle : ($this->guzzle = $this->factory->utils()->guzzle());
-    }
-
-    /**
-     * @return Serializer
-     */
-    private function serializer()
-    {
-        return isset($this->serializer) ? $this->serializer : ($this->serializer = $this->factory->utils()->serializer());
+        try {
+            return $this->factory->utils()->guzzle()->request($method, $this->url . $request->getPath(), [
+                'headers' => ['Content-Type' => 'application/json', 'APIKEY' => $this->apiKey],
+                'json' => $this->factory->utils()->serializer()->toArray($request)
+            ]);
+        } catch (RequestException $exception) {
+            return $exception->getResponse();
+        }
     }
 }

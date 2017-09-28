@@ -19,48 +19,41 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Order;
+
+use BitcoinVietnam\BitcoinVietnam\Model\Order;
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class PostOrder
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Order
  */
-class Factory
+final class PostOrder extends BaseResponse
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var Order
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Order")
+     * @Serializer\SerializedName("order")
      */
-    public function getOrder($id)
+    private $order;
+
+    /**
+     * @return Order
+     */
+    public function getOrder()
     {
-        return new GetOrder((string) $id);
+        return $this->order;
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
-     */
-    public function getOrders($open, $cancelled, $type = null)
-    {
-        return new GetOrders($open, $cancelled, $type);
-    }
-
-    /**
-     * @param string $id
-     * @return PatchOrder
-     */
-    public function patchOrder($id)
-    {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
+     * @param Order $order
      * @return PostOrder
      */
-    public function postOrder()
+    public function setOrder($order)
     {
-        return new PostOrder();
+        $this->order = $order;
+        return $this;
     }
 }

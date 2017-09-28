@@ -19,48 +19,49 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
+
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class Bitcoin
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-class Factory
+class Bitcoin implements PayoutInterface
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * Bitcoin address
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("address")
      */
-    public function getOrder($id)
+    private $address;
+
+    /**
+     * @return string
+     */
+    public function getPayoutDataSetter()
     {
-        return new GetOrder((string) $id);
+        return 'setBitcoin';
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return string
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getAddress()
     {
-        return new GetOrders($open, $cancelled, $type);
+        return $this->address;
     }
 
     /**
-     * @param string $id
-     * @return PatchOrder
+     * @param string $address
+     * @return Bitcoin
      */
-    public function patchOrder($id)
+    public function setAddress($address)
     {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        $this->address = $address;
+        return $this;
     }
 }

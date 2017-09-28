@@ -19,48 +19,45 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Model\Payout;
+
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class ContactablePayout
+ * @package BitcoinVietnam\BitcoinVietnam\Model\Payout
  */
-class Factory
+abstract class ContactablePayout extends BasePayout
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("contactEmail")
      */
-    public function getOrder($id)
+    protected $contactEmail;
+
+    /**
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("contactPhone")
+     */
+    protected $contactPhone;
+
+    /**
+     * @return string
+     */
+    public function getContactEmail()
     {
-        return new GetOrder((string) $id);
+        return $this->contactEmail;
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return string
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getContactPhone()
     {
-        return new GetOrders($open, $cancelled, $type);
-    }
-
-    /**
-     * @param string $id
-     * @return PatchOrder
-     */
-    public function patchOrder($id)
-    {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        return $this->contactPhone;
     }
 }

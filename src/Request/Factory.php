@@ -28,11 +28,27 @@ namespace BitcoinVietnam\BitcoinVietnam\Request;
 class Factory
 {
     /**
+     * @return Constants\Factory
+     */
+    public function constants()
+    {
+        return new Constants\Factory();
+    }
+
+    /**
      * @return Order\Factory
      */
     public function order()
     {
         return new Order\Factory();
+    }
+
+    /**
+     * @return Prices\Factory
+     */
+    public function prices()
+    {
+        return new Prices\Factory();
     }
 
     /**

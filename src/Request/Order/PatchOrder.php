@@ -21,46 +21,69 @@
 
 namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
 
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order;
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
+use JMS\Serializer\Annotation as Serializer;
+
 /**
- * Class Factory
+ * Class PatchOrder
  * @package BitcoinVietnam\BitcoinVietnam\Request\Order
  */
-class Factory
+class PatchOrder implements RequestInterface
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var string
      */
-    public function getOrder($id)
+    private $id;
+
+    /**
+     * @var Order
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order")
+     * @Serializer\SerializedName("order")
+     */
+    private $order;
+
+    /**
+     * GetOrder constructor.
+     * @param string $id
+     */
+    public function __construct($id)
     {
-        return new GetOrder((string) $id);
+        $this->id = $id;
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return string
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getPath()
     {
-        return new GetOrders($open, $cancelled, $type);
+        return '/order/' . $this->id;
     }
 
     /**
-     * @param string $id
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Order
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param Order $order
      * @return PatchOrder
      */
-    public function patchOrder($id)
+    public function setOrder($order)
     {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        $this->order = $order;
+        return $this;
     }
 }

@@ -19,48 +19,75 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Response;
+
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class Error
+ * @package BitcoinVietnam\BitcoinVietnam\Response
  */
-class Factory
+class Error
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * Error code
+     *
+     * @var int
+     *
+     * @Serializer\Type("integer")
+     * @Serializer\SerializedName("code")
      */
-    public function getOrder($id)
+    private $code;
+
+    /**
+     * Error message
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("message")
+     */
+    private $message;
+
+    /**
+     * The field in which a problematic value has been submitted, if available
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("field")
+     */
+    private $field;
+
+    /**
+     * @return int
+     */
+    public function getCode()
     {
-        return new GetOrder((string) $id);
+        return $this->code;
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return string
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getMessage()
     {
-        return new GetOrders($open, $cancelled, $type);
+        return $this->message;
     }
 
     /**
-     * @param string $id
-     * @return PatchOrder
+     * @return string
      */
-    public function patchOrder($id)
+    public function getField()
     {
-        return new PatchOrder((string) $id);
+        return $this->field;
     }
 
     /**
-     * @return PostOrder
+     * @return string
      */
-    public function postOrder()
+    public function __toString()
     {
-        return new PostOrder();
+        return $this->message;
     }
 }

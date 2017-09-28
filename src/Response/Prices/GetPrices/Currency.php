@@ -19,32 +19,35 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices;
 
-use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
-use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker\FeeStructure;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class GetTicker
- * @package BitcoinVietnam\BitcoinVietnam\Response\Ticker
+ * Class Currency
+ *
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices
  */
-final class GetTicker extends BaseResponse
+class Currency
 {
     /**
-     * Currency code
-     *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("currency")
+     * @Serializer\SerializedName("name")
      */
-    private $currency;
+    private $name;
 
     /**
-     * Buy rate
-     *
      * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("symbol")
+     */
+    private $symbol;
+
+    /**
+     * @var float
      *
      * @Serializer\Type("float")
      * @Serializer\SerializedName("buy")
@@ -52,9 +55,7 @@ final class GetTicker extends BaseResponse
     private $buy;
 
     /**
-     * Sell rate
-     *
-     * @var string
+     * @var float
      *
      * @Serializer\Type("float")
      * @Serializer\SerializedName("sell")
@@ -62,25 +63,39 @@ final class GetTicker extends BaseResponse
     private $sell;
 
     /**
-     * Fee structure
+     * @var float
      *
-     * @var FeeStructure
-     *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker\FeeStructure")
-     * @Serializer\SerializedName("feeStructure")
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("fixedFeeBuy")
      */
-    private $feeStructure;
+    private $fixedFeeBuy;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("fixedFeeSell")
+     */
+    private $fixedFeeSell;
 
     /**
      * @return string
      */
-    public function getCurrency()
+    public function getName()
     {
-        return $this->currency;
+        return $this->name;
     }
 
     /**
      * @return string
+     */
+    public function getSymbol()
+    {
+        return $this->symbol;
+    }
+
+    /**
+     * @return float
      */
     public function getBuy()
     {
@@ -88,7 +103,7 @@ final class GetTicker extends BaseResponse
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getSell()
     {
@@ -96,10 +111,18 @@ final class GetTicker extends BaseResponse
     }
 
     /**
-     * @return FeeStructure
+     * @return float
      */
-    public function getFeeStructure()
+    public function getFixedFeeBuy()
     {
-        return $this->feeStructure;
+        return $this->fixedFeeBuy;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFixedFeeSell()
+    {
+        return $this->fixedFeeSell;
     }
 }

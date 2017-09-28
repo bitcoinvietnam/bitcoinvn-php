@@ -19,48 +19,32 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Prices;
+
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices\Currency;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class GetPrices
+ *
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Prices
  */
-class Factory
+class GetPrices extends BaseResponse
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var Currency[]
+     *
+     * @Serializer\Type("array<string,BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices\Currency>")
+     * @Serializer\SerializedName("currencies")
      */
-    public function getOrder($id)
-    {
-        return new GetOrder((string) $id);
-    }
+    private $currencies;
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return Currency[]
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getCurrencies()
     {
-        return new GetOrders($open, $cancelled, $type);
-    }
-
-    /**
-     * @param string $id
-     * @return PatchOrder
-     */
-    public function patchOrder($id)
-    {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        return $this->currencies;
     }
 }

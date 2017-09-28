@@ -19,154 +19,153 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Model\Payment;
+namespace BitcoinVietnam\BitcoinVietnam\Model;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Bank
- *
- * @package AppBundle\Api\Model\Payment
+ * Class Account
+ * @package AppBundle\Api\Model\Order
  */
-final class Bank extends BasePayment
+class  Account
 {
     /**
-     * Name of the bank
+     * Account ID
      *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("bankName")
+     * @Serializer\SerializedName("id")
      */
-    private $bankName;
+    private $id;
 
     /**
-     * Branch of the bank
+     * Account name
      *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("bankBranch")
+     * @Serializer\SerializedName("name")
      */
-    private $bankBranch;
+    private $name;
 
     /**
-     * Account number
+     * Account email
      *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("accountNumber")
+     * @Serializer\SerializedName("email")
      */
-    private $accountNumber;
+    private $email;
 
     /**
-     * Holder of the bank account
+     * Monthly trading limit in crypto currency
      *
-     * @var string
+     * @var float
      *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("accountHolder")
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("tradingLimit")
      */
-    private $accountHolder;
+    private $tradingLimit;
 
     /**
-     * Swift code, if available
+     * What is already used up of the trading limit
      *
-     * @var string
+     * @var float
      *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("swift")
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("volumeUsed")
      */
-    private $swift;
+    private $volumeUsed;
 
     /**
      * @return string
      */
-    public function getBankName()
+    public function getId()
     {
-        return $this->bankName;
+        return $this->id;
     }
 
     /**
-     * @param string $bankName
-     * @return Bank
+     * @param string $id
+     * @return Account
      */
-    public function setBankName($bankName)
+    public function setId($id)
     {
-        $this->bankName = $bankName;
+        $this->id = $id;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getBankBranch()
+    public function getName()
     {
-        return $this->bankBranch;
+        return $this->name;
     }
 
     /**
-     * @param string $bankBranch
-     * @return Bank
+     * @param string $name
+     * @return Account
      */
-    public function setBankBranch($bankBranch)
+    public function setName($name)
     {
-        $this->bankBranch = $bankBranch;
+        $this->name = $name;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getAccountNumber()
+    public function getEmail()
     {
-        return $this->accountNumber;
+        return $this->email;
     }
 
     /**
-     * @param string $accountNumber
-     * @return Bank
+     * @param string $email
+     * @return Account
      */
-    public function setAccountNumber($accountNumber)
+    public function setEmail($email)
     {
-        $this->accountNumber = $accountNumber;
+        $this->email = $email;
         return $this;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getAccountHolder()
+    public function getTradingLimit()
     {
-        return $this->accountHolder;
+        return $this->tradingLimit;
     }
 
     /**
-     * @param string $accountHolder
-     * @return Bank
+     * @param float $tradingLimit
+     * @return Account
      */
-    public function setAccountHolder($accountHolder)
+    public function setTradingLimit($tradingLimit)
     {
-        $this->accountHolder = $accountHolder;
+        $this->tradingLimit = $tradingLimit;
         return $this;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getSwift()
+    public function getVolumeUsed()
     {
-        return $this->swift;
+        return $this->volumeUsed;
     }
 
     /**
-     * @param string $swift
-     * @return Bank
+     * @param float $volumeUsed
+     * @return Account
      */
-    public function setSwift($swift)
+    public function setVolumeUsed($volumeUsed)
     {
-        $this->swift = $swift;
+        $this->volumeUsed = $volumeUsed;
         return $this;
     }
 }

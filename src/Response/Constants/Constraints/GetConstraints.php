@@ -19,48 +19,47 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints;
+
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints\MinVolume;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class GetConstraints
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints
  */
-class Factory
+class GetConstraints extends BaseResponse
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var MinVolume[]
+     *
+     * @Serializer\Type("array<string, BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints\MinVolume>")
+     * @Serializer\SerializedName("minVolumes")
      */
-    public function getOrder($id)
+    private $minVolumes = [];
+
+    /**
+     * @var string[]
+     *
+     * @Serializer\Type("array<string>")
+     * @Serializer\SerializedName("supportedBanks")
+     */
+    private $supportedBanks;
+
+    /**
+     * @return MinVolume[]
+     */
+    public function getMinVolumes()
     {
-        return new GetOrder((string) $id);
+        return $this->minVolumes;
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return \string[]
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getSupportedBanks()
     {
-        return new GetOrders($open, $cancelled, $type);
-    }
-
-    /**
-     * @param string $id
-     * @return PatchOrder
-     */
-    public function patchOrder($id)
-    {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        return $this->supportedBanks;
     }
 }

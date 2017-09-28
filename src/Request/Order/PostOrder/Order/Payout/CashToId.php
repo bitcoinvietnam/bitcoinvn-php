@@ -19,18 +19,18 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Model\Payout;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class CashToId
- * @package BitcoinVietnam\BitcoinVietnam\Model\Payout
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-final class CashToId extends ContactablePayout
+final class CashToId extends ContactablePayout implements PayoutInterface
 {
     /**
-     * Full name of the recipient
+     * Name of recipient
      *
      * @var string
      *
@@ -40,7 +40,7 @@ final class CashToId extends ContactablePayout
     private $recipientName;
 
     /**
-     * ID number of the recipient
+     * ID/passport number of recipient
      *
      * @var string
      *
@@ -50,7 +50,7 @@ final class CashToId extends ContactablePayout
     private $recipientId;
 
     /**
-     * Date of ID issue
+     * Date of ID/passport issue
      *
      * @var \DateTime
      *
@@ -60,7 +60,7 @@ final class CashToId extends ContactablePayout
     private $recipientIdDateOfIssue;
 
     /**
-     * Location of ID issue
+     * ID/passport place of issue
      *
      * @var string
      *
@@ -70,7 +70,7 @@ final class CashToId extends ContactablePayout
     private $recipientIdPlaceOfIssue;
 
     /**
-     * Name of the bank
+     * Bank name
      *
      * @var string
      *
@@ -80,7 +80,7 @@ final class CashToId extends ContactablePayout
     private $bankName;
 
     /**
-     * Branch of the bank
+     * Bank branch
      *
      * @var string
      *
@@ -90,7 +90,7 @@ final class CashToId extends ContactablePayout
     private $bankBranch;
 
     /**
-     * Branch of the bank
+     * Bank branch
      *
      * @var string
      *
@@ -98,6 +98,14 @@ final class CashToId extends ContactablePayout
      * @Serializer\SerializedName("bankLocation")
      */
     private $bankLocation;
+
+    /**
+     * @return string
+     */
+    public function getPayoutDataSetter()
+    {
+        return 'setCashToId';
+    }
 
     /**
      * @return string

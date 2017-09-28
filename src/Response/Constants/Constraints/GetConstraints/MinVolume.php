@@ -19,48 +19,61 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints;
+
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class MinVolume
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints
  */
-class Factory
+class MinVolume
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("symbol")
      */
-    public function getOrder($id)
+    private $symbol;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("buy")
+     */
+    private $buy;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("sell")
+     */
+    private $sell;
+
+    /**
+     * @return string
+     */
+    public function getSymbol()
     {
-        return new GetOrder((string) $id);
+        return $this->symbol;
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return float
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getBuy()
     {
-        return new GetOrders($open, $cancelled, $type);
+        return $this->buy;
     }
 
     /**
-     * @param string $id
-     * @return PatchOrder
+     * @return float
      */
-    public function patchOrder($id)
+    public function getSell()
     {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        return $this->sell;
     }
 }

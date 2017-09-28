@@ -19,48 +19,65 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
+
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class ContactablePayout
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-class Factory
+abstract class ContactablePayout
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("contactEmail")
      */
-    public function getOrder($id)
+    protected $contactEmail;
+
+    /**
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("contactPhone")
+     */
+    protected $contactPhone;
+
+    /**
+     * @return string
+     */
+    public function getContactEmail()
     {
-        return new GetOrder((string) $id);
+        return $this->contactEmail;
     }
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @param string $contactEmail
+     * @return ContactablePayout
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function setContactEmail($contactEmail)
     {
-        return new GetOrders($open, $cancelled, $type);
+        $this->contactEmail = $contactEmail;
+        return $this;
     }
 
     /**
-     * @param string $id
-     * @return PatchOrder
+     * @return string
      */
-    public function patchOrder($id)
+    public function getContactPhone()
     {
-        return new PatchOrder((string) $id);
+        return $this->contactPhone;
     }
 
     /**
-     * @return PostOrder
+     * @param string $contactPhone
+     * @return ContactablePayout
      */
-    public function postOrder()
+    public function setContactPhone($contactPhone)
     {
-        return new PostOrder();
+        $this->contactPhone = $contactPhone;
+        return $this;
     }
 }

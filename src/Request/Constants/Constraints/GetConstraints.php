@@ -19,48 +19,21 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Constants\Constraints;
+
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class GetConstraints
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Constants\Constraints
  */
-class Factory
+class GetConstraints implements RequestInterface
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @return string
      */
-    public function getOrder($id)
+    public function getPath()
     {
-        return new GetOrder((string) $id);
-    }
-
-    /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
-     */
-    public function getOrders($open, $cancelled, $type = null)
-    {
-        return new GetOrders($open, $cancelled, $type);
-    }
-
-    /**
-     * @param string $id
-     * @return PatchOrder
-     */
-    public function patchOrder($id)
-    {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        return '/constants/constraints';
     }
 }

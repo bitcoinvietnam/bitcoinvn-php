@@ -19,49 +19,85 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class BaseResponse
- * @package BitcoinVietnam\BitcoinVietnam\Response
+ * Class FeeStructure
+ * @package BitcoinVietnam\BitcoinVietnam\Response\GetTicker
  */
-abstract class BaseResponse implements ResponseInterface
+class FeeStructure
 {
     /**
-     * HTTP status
+     * Fee rate
      *
-     * @var int
+     * @var float
      *
-     * @Serializer\Type("integer")
-     * @Serializer\SerializedName("status")
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("feeRate")
      */
-    private $status;
+    private $feeRate;
 
     /**
-     * Error
+     * Fee rate for VIP users
      *
-     * @var Error
+     * @var float
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Error")
-     * @Serializer\SerializedName("error")
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("feeRateVip")
      */
-    protected $error;
+    private $feeRateVip;
 
     /**
-     * @return int
+     * Fixed fee for buy orders
+     *
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("fixedFeeBuy")
      */
-    public function getStatus()
+    private $fixedFeeBuy;
+
+    /**
+     * Fixed fee for sell orders
+     *
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("fixedFeeSell")
+     */
+    private $fixedFeeSell;
+
+    /**
+     * @return float
+     */
+    public function getFeeRate()
     {
-        return $this->status;
+        return $this->feeRate;
     }
 
     /**
-     * @return Error
+     * @return float
      */
-    public function getError()
+    public function getFeeRateVip()
     {
-        return $this->error;
+        return $this->feeRateVip;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFixedFeeBuy()
+    {
+        return $this->fixedFeeBuy;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFixedFeeSell()
+    {
+        return $this->fixedFeeSell;
     }
 }

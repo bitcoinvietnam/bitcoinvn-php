@@ -19,48 +19,31 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Order;
+
+use BitcoinVietnam\BitcoinVietnam\Model\Order;
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * Class GetOrders
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Order
  */
-class Factory
+final class GetOrders extends BaseResponse
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @var Order[]
+     *
+     * @Serializer\Type("array<BitcoinVietnam\BitcoinVietnam\Model\Order>")
+     * @Serializer\SerializedName("orders")
      */
-    public function getOrder($id)
-    {
-        return new GetOrder((string) $id);
-    }
+    private $orders;
 
     /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
+     * @return Order[]
      */
-    public function getOrders($open, $cancelled, $type = null)
+    public function getOrders()
     {
-        return new GetOrders($open, $cancelled, $type);
-    }
-
-    /**
-     * @param string $id
-     * @return PatchOrder
-     */
-    public function patchOrder($id)
-    {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        return $this->orders;
     }
 }

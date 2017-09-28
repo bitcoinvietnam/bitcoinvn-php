@@ -19,48 +19,19 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Constants;
 
 /**
  * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Constants
  */
 class Factory
 {
     /**
-     * @param string $id
-     * @return GetOrder
+     * @return Constraints\Factory
      */
-    public function getOrder($id)
+    public function constraints()
     {
-        return new GetOrder((string) $id);
-    }
-
-    /**
-     * @param bool $open
-     * @param bool $cancelled
-     * @param string $type
-     * @return GetOrders
-     */
-    public function getOrders($open, $cancelled, $type = null)
-    {
-        return new GetOrders($open, $cancelled, $type);
-    }
-
-    /**
-     * @param string $id
-     * @return PatchOrder
-     */
-    public function patchOrder($id)
-    {
-        return new PatchOrder((string) $id);
-    }
-
-    /**
-     * @return PostOrder
-     */
-    public function postOrder()
-    {
-        return new PostOrder();
+        return new Constraints\Factory();
     }
 }
