@@ -62,6 +62,10 @@ class Payout
      */
     public function setPayout(PayoutInterface $payout)
     {
+        $this->setBank(null);
+        $this->setBitcoin(null);
+        $this->setCashToId(null);
+
         $this->{$payout->getPayoutDataSetter()}($payout);
     }
 

@@ -186,14 +186,15 @@ class Client
      * @param PayoutInterface $payout
      * @return PostOrder
      */
-    public function postOrder(OrderPostOrder $postOrder, PayoutInterface $payout)
+    public function postOrder(OrderPostOrder $postOrder, PayoutInterface $payout = null)
     {
-        $postOrder->getPayout()->setPayout($payout);
-        $requestModel = $this->factory->request()->order()->postOrder()->setOrder($postOrder);
+        if ($payout) {
+            $postOrder->getPayout()->setPayout($payout);
+        }
 
         return $this->factory->utils()->serializer()->deserialize(
             $this
-                ->sendRequest($requestModel, 'POST')
+                ->sendRequest($this->factory->request()->order()->postOrder()->setOrder($postOrder), 'POST')
                 ->getBody()
                 ->getContents(),
             PostOrder::class,

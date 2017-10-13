@@ -54,7 +54,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      *
      * @var \DateTime
      *
-     * @Serializer\Type("DateTime")
+     * @Serializer\Type("DateTime<'Y-m-d'>")
      * @Serializer\SerializedName("recipientIdDateOfIssue")
      */
     private $recipientIdDateOfIssue;
