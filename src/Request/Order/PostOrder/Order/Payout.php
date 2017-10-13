@@ -53,7 +53,7 @@ class Payout
      * @var CashToId
      *
      * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\CashToId")
-     * @Serializer\SerializedName("bank")
+     * @Serializer\SerializedName("cashToId")
      */
     private $cashToId;
 
