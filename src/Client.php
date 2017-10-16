@@ -25,6 +25,7 @@ use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order as OrderPatchOr
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order as OrderPostOrder;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\PayoutInterface;
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
+use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount;
 use BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
@@ -69,6 +70,22 @@ class Client
         $this->url = $url;
         $this->factory = Factory::create();
     }
+
+    // ACCOUNT
+
+    /**
+     * @return GetAccount
+     */
+    public function getAccount()
+    {
+        return $this->factory->utils()->serializer()->deserialize(
+            $this->sendRequest($this->factory->request()->account()->getAccount(), 'GET')->getBody()->getContents(),
+            GetAccount::class,
+            'json'
+        );
+    }
+
+    // END ACCOUNT
 
     // CONSTANTS //
 

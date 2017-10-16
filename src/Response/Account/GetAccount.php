@@ -19,51 +19,31 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Account;
+
+use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account;
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class GetAccount
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Account
  */
-class Factory
+class GetAccount extends BaseResponse
 {
     /**
-     * @return Account\Factory
+     * @var Account
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account")
+     * @Serializer\SerializedName("account")
      */
-    public function account()
-    {
-        return new Account\Factory();
-    }
+    private $account;
 
     /**
-     * @return Constants\Factory
+     * @return Account
      */
-    public function constants()
+    public function getAccount()
     {
-        return new Constants\Factory();
-    }
-
-    /**
-     * @return Order\Factory
-     */
-    public function order()
-    {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
-    }
-
-    /**
-     * @return Ticker\Factory
-     */
-    public function ticker()
-    {
-        return new Ticker\Factory();
+        return $this->account;
     }
 }

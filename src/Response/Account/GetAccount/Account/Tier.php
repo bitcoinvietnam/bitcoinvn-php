@@ -19,51 +19,61 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account;
+
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class Tier
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account
  */
-class Factory
+class Tier
 {
     /**
-     * @return Account\Factory
+     * @var int
+     *
+     * @Serializer\Type("integer")
+     * @Serializer\SerializedName("number")
      */
-    public function account()
+    private $number;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("feeRate")
+     */
+    private $feeRate;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("tradingLimit")
+     */
+    private $tradingLimit;
+
+    /**
+     * @return int
+     */
+    public function getNumber()
     {
-        return new Account\Factory();
+        return $this->number;
     }
 
     /**
-     * @return Constants\Factory
+     * @return float
      */
-    public function constants()
+    public function getFeeRate()
     {
-        return new Constants\Factory();
+        return $this->feeRate;
     }
 
     /**
-     * @return Order\Factory
+     * @return float
      */
-    public function order()
+    public function getTradingLimit()
     {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
-    }
-
-    /**
-     * @return Ticker\Factory
-     */
-    public function ticker()
-    {
-        return new Ticker\Factory();
+        return $this->tradingLimit;
     }
 }

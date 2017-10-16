@@ -19,51 +19,21 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Account;
+
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class GetAccount
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Account
  */
-class Factory
+class GetAccount implements RequestInterface
 {
     /**
-     * @return Account\Factory
+     * @return string
      */
-    public function account()
+    public function getPath()
     {
-        return new Account\Factory();
-    }
-
-    /**
-     * @return Constants\Factory
-     */
-    public function constants()
-    {
-        return new Constants\Factory();
-    }
-
-    /**
-     * @return Order\Factory
-     */
-    public function order()
-    {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
-    }
-
-    /**
-     * @return Ticker\Factory
-     */
-    public function ticker()
-    {
-        return new Ticker\Factory();
+        return '/account';
     }
 }
