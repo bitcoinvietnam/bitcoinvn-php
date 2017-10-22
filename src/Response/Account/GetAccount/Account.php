@@ -21,8 +21,8 @@
 
 namespace BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount;
 
+use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account\Tier;
 use JMS\Serializer\Annotation as Serializer;
-use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Tier;
 
 /**
  * Class Account
@@ -69,6 +69,14 @@ class Account
      * @Serializer\SerializedName("vip")
      */
     private $vip;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("credit")
+     */
+    private $credit;
 
     /**
      * @var float
@@ -132,6 +140,14 @@ class Account
     public function isVip()
     {
         return $this->vip;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCredit()
+    {
+        return $this->credit;
     }
 
     /**
