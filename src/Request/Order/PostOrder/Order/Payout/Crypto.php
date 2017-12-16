@@ -27,7 +27,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Class Bitcoin
  * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-class Bitcoin implements PayoutInterface
+class Crypto implements PayoutInterface
 {
     /**
      * Bitcoin address
@@ -57,7 +57,7 @@ class Bitcoin implements PayoutInterface
 
     /**
      * @param string $address
-     * @return Bitcoin
+     * @return Crypto
      */
     public function setAddress($address)
     {

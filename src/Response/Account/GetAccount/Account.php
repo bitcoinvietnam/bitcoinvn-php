@@ -66,6 +66,14 @@ class Account
      * @var bool
      *
      * @Serializer\Type("boolean")
+     * @Serializer\SerializedName("residenceVerified")
+     */
+    private $residenceVerified;
+
+    /**
+     * @var bool
+     *
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("vip")
      */
     private $vip;
@@ -132,6 +140,14 @@ class Account
     public function isVerified()
     {
         return $this->verified;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isResidenceVerified()
+    {
+        return $this->residenceVerified;
     }
 
     /**

@@ -22,7 +22,7 @@
 namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order;
 
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Bank;
-use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Bitcoin;
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Crypto;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\CashToId;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\PayoutInterface;
 use JMS\Serializer\Annotation as Serializer;
@@ -42,12 +42,12 @@ class Payout
     private $bank;
 
     /**
-     * @var Bitcoin
+     * @var Crypto
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Bitcoin")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Crypto")
      * @Serializer\SerializedName("bitcoin")
      */
-    private $bitcoin;
+    private $crypto;
 
     /**
      * @var CashToId
@@ -63,7 +63,7 @@ class Payout
     public function setPayout(PayoutInterface $payout)
     {
         $this->setBank(null);
-        $this->setBitcoin(null);
+        $this->setCrypto(null);
         $this->setCashToId(null);
 
         $this->{$payout->getPayoutDataSetter()}($payout);
@@ -88,20 +88,20 @@ class Payout
     }
 
     /**
-     * @return Bitcoin
+     * @return Crypto
      */
-    public function getBitcoin()
+    public function getCrypto()
     {
-        return $this->bitcoin;
+        return $this->crypto;
     }
 
     /**
-     * @param Bitcoin $bitcoin
+     * @param Crypto $crypto
      * @return Payout
      */
-    public function setBitcoin($bitcoin)
+    public function setCrypto($crypto)
     {
-        $this->bitcoin = $bitcoin;
+        $this->crypto = $crypto;
         return $this;
     }
 
@@ -120,6 +120,28 @@ class Payout
     public function setCashToId($cashToId)
     {
         $this->cashToId = $cashToId;
+        return $this;
+    }
+
+    /* DEPRECATED */
+
+    /**
+     * @deprecated
+     * @return Crypto
+     */
+    public function getBitcoin()
+    {
+        return $this->crypto;
+    }
+
+    /**
+     * @deprecated
+     * @param Crypto $bitcoin
+     * @return $this
+     */
+    public function setBitcoin($bitcoin)
+    {
+        $this->crypto = $bitcoin;
         return $this;
     }
 }
