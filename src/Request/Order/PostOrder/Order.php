@@ -109,6 +109,14 @@ class Order
     private $payout;
 
     /**
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("serviceProvider")
+     */
+    private $serviceProvider;
+
+    /**
      * PostOrder constructor.
      */
     public function __construct()
@@ -257,6 +265,24 @@ class Order
     public function setPayout($payout)
     {
         $this->payout = $payout;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServiceProvider()
+    {
+        return $this->serviceProvider;
+    }
+
+    /**
+     * @param string $serviceProvider
+     * @return Order
+     */
+    public function setServiceProvider($serviceProvider)
+    {
+        $this->serviceProvider = $serviceProvider;
         return $this;
     }
 }

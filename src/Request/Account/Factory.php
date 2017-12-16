@@ -19,43 +19,19 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Account;
 
 /**
  * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Account
  */
 class Factory
 {
     /**
-     * @return Account\Factory
+     * @return GetAccount
      */
-    public function account()
+    public function getAccount()
     {
-        return new Account\Factory();
-    }
-
-    /**
-     * @return Constants\Factory
-     */
-    public function constants()
-    {
-        return new Constants\Factory();
-    }
-
-    /**
-     * @return Order\Factory
-     */
-    public function order()
-    {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
+        return new GetAccount();
     }
 }

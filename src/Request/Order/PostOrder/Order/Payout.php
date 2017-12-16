@@ -53,7 +53,7 @@ class Payout
      * @var CashToId
      *
      * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\CashToId")
-     * @Serializer\SerializedName("bank")
+     * @Serializer\SerializedName("cashToId")
      */
     private $cashToId;
 
@@ -62,6 +62,10 @@ class Payout
      */
     public function setPayout(PayoutInterface $payout)
     {
+        $this->setBank(null);
+        $this->setBitcoin(null);
+        $this->setCashToId(null);
+
         $this->{$payout->getPayoutDataSetter()}($payout);
     }
 
