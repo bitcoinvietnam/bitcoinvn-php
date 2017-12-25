@@ -24,11 +24,11 @@ namespace BitcoinVietnam\BitcoinVietnam\Model\Payment;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Bitcoin
+ * Class Crypto
  *
  * @package AppBundle\Api\Model\Payment
  */
-final class Bitcoin extends BasePayment
+final class Crypto extends BasePayment
 {
     /**
      * Bitcoin address
@@ -58,7 +58,7 @@ final class Bitcoin extends BasePayment
 
     /**
      * @param string $address
-     * @return Bitcoin
+     * @return Crypto
      */
     public function setAddress($address)
     {

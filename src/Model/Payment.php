@@ -22,7 +22,7 @@
 namespace BitcoinVietnam\BitcoinVietnam\Model;
 
 use BitcoinVietnam\BitcoinVietnam\Model\Payment\Bank;
-use BitcoinVietnam\BitcoinVietnam\Model\Payment\Bitcoin;
+use BitcoinVietnam\BitcoinVietnam\Model\Payment\Crypto;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
@@ -40,12 +40,12 @@ class Payment
     private $bank;
 
     /**
-     * @var Bitcoin
+     * @var Crypto
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Payment\Bitcoin")
-     * @Serializer\SerializedName("bitcoin")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Payment\Crypto")
+     * @Serializer\SerializedName("crypto")
      */
-    private $bitcoin;
+    private $crypto;
 
     /**
      * @return Bank
@@ -66,20 +66,40 @@ class Payment
     }
 
     /**
-     * @return Bitcoin
+     * @return Crypto
      */
-    public function getBitcoin()
+    public function getCrypto()
     {
-        return $this->bitcoin;
+        return $this->crypto;
     }
 
     /**
-     * @param Bitcoin $bitcoin
+     * @param Crypto $crypto
      * @return Payment
      */
-    public function setBitcoin($bitcoin)
+    public function setCrypto($crypto)
     {
-        $this->bitcoin = $bitcoin;
+        $this->crypto = $crypto;
+        return $this;
+    }
+
+    /**
+     * @deprecated
+     * @return Crypto
+     */
+    public function getBitcoin()
+    {
+        return $this->crypto;
+    }
+
+    /**
+     * @deprecated
+     * @param $crypto
+     * @return $this
+     */
+    public function setBitcoin($crypto)
+    {
+        $this->crypto = $crypto;
         return $this;
     }
 }
