@@ -19,85 +19,49 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
+namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class FeeStructure
- * @package BitcoinVietnam\BitcoinVietnam\Response\GetTicker
+ * Class Bitcoin
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
  */
-class FeeStructure
+class Crypto implements PayoutInterface
 {
     /**
-     * Fee rate
+     * Bitcoin address
      *
-     * @var float
+     * @var string
      *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("feeRate")
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("address")
      */
-    private $feeRate;
+    private $address;
 
     /**
-     * Fee rate for VIP users
-     *
-     * @var float
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("feeRateVip")
+     * @return string
      */
-    private $feeRateVip;
-
-    /**
-     * Fixed fee for buy orders
-     *
-     * @var float
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("fixedFeeBuy")
-     */
-    private $fixedFeeBuy;
-
-    /**
-     * Fixed fee for sell orders
-     *
-     * @var float
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("fixedFeeSell")
-     */
-    private $fixedFeeSell;
-
-    /**
-     * @return float
-     */
-    public function getFeeRate()
+    public function getPayoutDataSetter()
     {
-        return $this->feeRate;
+        return 'setBitcoin';
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getFeeRateVip()
+    public function getAddress()
     {
-        return $this->feeRateVip;
+        return $this->address;
     }
 
     /**
-     * @return float
+     * @param string $address
+     * @return Crypto
      */
-    public function getFixedFeeBuy()
+    public function setAddress($address)
     {
-        return $this->fixedFeeBuy;
-    }
-
-    /**
-     * @return float
-     */
-    public function getFixedFeeSell()
-    {
-        return $this->fixedFeeSell;
+        $this->address = $address;
+        return $this;
     }
 }

@@ -36,11 +36,11 @@ class Factory
     }
 
     /**
-     * @return Bitcoin
+     * @return Crypto
      */
-    public function bitcoin()
+    public function crypto()
     {
-        return new Bitcoin();
+        return new Crypto();
     }
 
     /**

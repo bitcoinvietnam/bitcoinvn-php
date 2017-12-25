@@ -58,12 +58,4 @@ class Factory
     {
         return new Prices\Factory();
     }
-
-    /**
-     * @return Ticker\Factory
-     */
-    public function ticker()
-    {
-        return new Ticker\Factory();
-    }
 }

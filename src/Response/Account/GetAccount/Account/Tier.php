@@ -54,6 +54,14 @@ class Tier
     private $tradingLimit;
 
     /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("orderLimit")
+     */
+    private $orderLimit;
+
+    /**
      * @return int
      */
     public function getNumber()
@@ -75,5 +83,13 @@ class Tier
     public function getTradingLimit()
     {
         return $this->tradingLimit;
+    }
+
+    /**
+     * @return float
+     */
+    public function getOrderLimit()
+    {
+        return $this->orderLimit;
     }
 }

@@ -32,7 +32,6 @@ use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PostOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices;
-use BitcoinVietnam\BitcoinVietnam\Response\Ticker\GetTicker;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -101,8 +100,6 @@ class Client
         );
     }
 
-    // END CONSTANTS //
-
     /**
      * @return GetPrices
      */
@@ -114,29 +111,6 @@ class Client
             'json'
         );
     }
-
-
-    // END PRICES //
-
-
-    // TICKER //
-
-    /**
-     * @return GetTicker
-     * @deprecated Use Client::getPrices() instead
-     */
-    public function getTicker()
-    {
-        return $this->factory->utils()->serializer()->deserialize(
-            $this->sendRequest($this->factory->request()->ticker()->getTicker(), 'GET')->getBody()->getContents(),
-            GetTicker::class,
-            'json'
-        );
-    }
-
-    // END TICKER //
-
-    // ORDER
 
     /**
      * @param string $id
@@ -218,8 +192,6 @@ class Client
             'json'
         );
     }
-
-    // END ORDER
 
     /**
      * @param RequestInterface $request
