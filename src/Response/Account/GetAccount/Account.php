@@ -21,6 +21,7 @@
 
 namespace BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount;
 
+use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account\Balance;
 use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account\Tier;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -111,6 +112,14 @@ class Account
     private $tier;
 
     /**
+     * @var Balance[]
+     *
+     * @Serializer\Type("array<BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account\Balance>")
+     * @Serializer\SerializedName("balances")
+     */
+    private $balances = [];
+
+    /**
      * @return string
      */
     public function getId()
@@ -188,5 +197,13 @@ class Account
     public function getTier()
     {
         return $this->tier;
+    }
+
+    /**
+     * @return Balance[]
+     */
+    public function getBalances()
+    {
+        return $this->balances;
     }
 }
