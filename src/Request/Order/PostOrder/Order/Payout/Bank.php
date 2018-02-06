@@ -37,7 +37,7 @@ final class Bank extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankName")
      */
-    private $bankName;
+    protected $bankName;
 
     /**
      * Bank branch
@@ -47,7 +47,7 @@ final class Bank extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankBranch")
      */
-    private $bankBranch;
+    protected $bankBranch;
 
     /**
      * Number of bank account
@@ -57,7 +57,7 @@ final class Bank extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("accountNumber")
      */
-    private $accountNumber;
+    protected $accountNumber;
 
     /**
      * Holder of bank account
@@ -67,7 +67,7 @@ final class Bank extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("accountHolder")
      */
-    private $accountHolder;
+    protected $accountHolder;
 
     /**
      * Swift
@@ -77,7 +77,7 @@ final class Bank extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("swift")
      */
-    private $swift;
+    protected $swift;
 
     /**
      * @return string

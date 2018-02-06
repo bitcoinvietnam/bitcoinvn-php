@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 Bitcoin Viet Nam Co., Ltd.
+ * Copyright (c) 2018 Bitcoin Viet Nam Co., Ltd.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  *  and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,49 +19,64 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
+/**
+ * Created by PhpStorm.
+ * User: alexwinter
+ * Date: 04.02.18
+ * Time: 14:25
+ */
 
+namespace BitcoinVietnam\BitcoinVietnam\Request\Withdrawal;
+
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
+use BitcoinVietnam\BitcoinVietnam\Request\Withdrawal\PostWithdrawal\Withdrawal;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Bitcoin
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
+ * Class PostWithdrawal
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Withdrawal
  */
-class Crypto implements PayoutInterface
+class PostWithdrawal implements RequestInterface
 {
     /**
-     * Bitcoin address
+     * @var Withdrawal
      *
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("address")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Withdrawal\PostWithdrawal\Withdrawal")
+     * @Serializer\SerializedName("withdrawal")
      */
-    protected $address;
+    private $withdrawal;
 
     /**
-     * @return string
+     * PostWithdrawal constructor.
      */
-    public function getPayoutDataSetter()
+    public function __construct()
     {
-        return 'setBitcoin';
+        $this->withdrawal = new Withdrawal();
     }
 
     /**
      * @return string
      */
-    public function getAddress()
+    public function getPath()
     {
-        return $this->address;
+        return '/withdrawal';
     }
 
     /**
-     * @param string $address
-     * @return Crypto
+     * @return Withdrawal
      */
-    public function setAddress($address)
+    public function getWithdrawal()
     {
-        $this->address = $address;
+        return $this->withdrawal;
+    }
+
+    /**
+     * @param Withdrawal $withdrawal
+     * @return PostWithdrawal
+     */
+    public function setWithdrawal($withdrawal)
+    {
+        $this->withdrawal = $withdrawal;
         return $this;
     }
 }
