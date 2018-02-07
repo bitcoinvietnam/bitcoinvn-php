@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 Bitcoin Viet Nam Co., Ltd.
+ * Copyright (c) 2018 Bitcoin Viet Nam Co., Ltd.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  *  and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,51 +19,38 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+/**
+ * Created by PhpStorm.
+ * User: alexwinter
+ * Date: 07.02.18
+ * Time: 14:06
+ */
+
+namespace BitcoinVietnam\BitcoinVietnam\Response\Withdrawal;
+
+use BitcoinVietnam\BitcoinVietnam\Model\Withdrawal;
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class PostWithdrawal
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Withdrawal
  */
-class Factory
+class PostWithdrawal extends BaseResponse
 {
     /**
-     * @return Account\Factory
+     * @var Withdrawal
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Withdrawal")
+     * @Serializer\SerializedName("withdrawal")
      */
-    public function account()
-    {
-        return new Account\Factory();
-    }
+    private $withdrawal;
 
     /**
-     * @return Constants\Factory
+     * @return Withdrawal
      */
-    public function constants()
+    public function getWithdrawal()
     {
-        return new Constants\Factory();
-    }
-
-    /**
-     * @return Order\Factory
-     */
-    public function order()
-    {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
-    }
-
-    /**
-     * @return Withdrawal\Factory
-     */
-    public function withdrawal()
-    {
-        return new Withdrawal\Factory();
+        return $this->withdrawal;
     }
 }

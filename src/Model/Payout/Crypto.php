@@ -19,51 +19,42 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+namespace BitcoinVietnam\BitcoinVietnam\Model\Payout;
+
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * Class Bitcoin
+ *
+ * @package AppBundle\Api\Model\Payout
  */
-class Factory
+final class Crypto extends BasePayout
 {
     /**
-     * @return Account\Factory
+     * Bitcoin address
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("address")
      */
-    public function account()
+    private $address;
+
+    /**
+     * @return string
+     */
+    public function getAddress()
     {
-        return new Account\Factory();
+        return $this->address;
     }
 
     /**
-     * @return Constants\Factory
+     * @param string $address
+     * @return Crypto
      */
-    public function constants()
+    public function setAddress($address)
     {
-        return new Constants\Factory();
-    }
-
-    /**
-     * @return Order\Factory
-     */
-    public function order()
-    {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
-    }
-
-    /**
-     * @return Withdrawal\Factory
-     */
-    public function withdrawal()
-    {
-        return new Withdrawal\Factory();
+        $this->address = $address;
+        return $this;
     }
 }

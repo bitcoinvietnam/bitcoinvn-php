@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 Bitcoin Viet Nam Co., Ltd.
+ * Copyright (c) 2018 Bitcoin Viet Nam Co., Ltd.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  *  and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,51 +19,26 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request;
+/**
+ * Created by PhpStorm.
+ * User: alexwinter
+ * Date: 07.02.18
+ * Time: 14:15
+ */
+
+namespace BitcoinVietnam\BitcoinVietnam\Request\Withdrawal;
 
 /**
  * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request
+ * @package BitcoinVietnam\BitcoinVietnam\Request\Withdrawal
  */
 class Factory
 {
     /**
-     * @return Account\Factory
+     * @return PostWithdrawal
      */
-    public function account()
+    public function postWithdrawal()
     {
-        return new Account\Factory();
-    }
-
-    /**
-     * @return Constants\Factory
-     */
-    public function constants()
-    {
-        return new Constants\Factory();
-    }
-
-    /**
-     * @return Order\Factory
-     */
-    public function order()
-    {
-        return new Order\Factory();
-    }
-
-    /**
-     * @return Prices\Factory
-     */
-    public function prices()
-    {
-        return new Prices\Factory();
-    }
-
-    /**
-     * @return Withdrawal\Factory
-     */
-    public function withdrawal()
-    {
-        return new Withdrawal\Factory();
+        return new PostWithdrawal();
     }
 }
