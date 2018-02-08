@@ -37,6 +37,14 @@ use JMS\Serializer\Annotation as Serializer;
 class Withdrawal
 {
     /**
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("id")
+     */
+    private $id;
+
+    /**
      * @var float
      *
      * @Serializer\Type("float")
@@ -59,6 +67,14 @@ class Withdrawal
      * @Serializer\SerializedName("payout")
      */
     private $payout;
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return Payout
