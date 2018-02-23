@@ -19,15 +19,16 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
+namespace BitcoinVietnam\BitcoinVietnam\Model\Payout;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Bitcoin
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
+ *
+ * @package AppBundle\Api\Model\Payout
  */
-class Crypto implements PayoutInterface
+final class Crypto extends BasePayout
 {
     /**
      * Bitcoin address
@@ -37,15 +38,7 @@ class Crypto implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("address")
      */
-    protected $address;
-
-    /**
-     * @return string
-     */
-    public function getPayoutDataSetter()
-    {
-        return 'setBitcoin';
-    }
+    private $address;
 
     /**
      * @return string

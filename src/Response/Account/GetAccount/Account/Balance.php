@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 Bitcoin Viet Nam Co., Ltd.
+ * Copyright (c) 2018 Bitcoin Viet Nam Co., Ltd.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  *  and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,49 +19,52 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
+/**
+ * Created by PhpStorm.
+ * User: alexwinter
+ * Date: 02.02.18
+ * Time: 13:22
+ */
+
+namespace BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Bitcoin
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
+ * Class Balance
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount\Account
  */
-class Crypto implements PayoutInterface
+class Balance
 {
     /**
-     * Bitcoin address
-     *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("address")
+     * @Serializer\SerializedName("currency")
      */
-    protected $address;
+    private $currency;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("balance")
+     */
+    private $balance;
 
     /**
      * @return string
      */
-    public function getPayoutDataSetter()
+    public function getCurrency()
     {
-        return 'setBitcoin';
+        return $this->currency;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getAddress()
+    public function getBalance()
     {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     * @return Crypto
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-        return $this;
+        return $this->balance;
     }
 }

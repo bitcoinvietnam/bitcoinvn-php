@@ -37,7 +37,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("recipientName")
      */
-    private $recipientName;
+    protected $recipientName;
 
     /**
      * ID/passport number of recipient
@@ -47,7 +47,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("recipientId")
      */
-    private $recipientId;
+    protected $recipientId;
 
     /**
      * Date of ID/passport issue
@@ -57,7 +57,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("DateTime<'Y-m-d'>")
      * @Serializer\SerializedName("recipientIdDateOfIssue")
      */
-    private $recipientIdDateOfIssue;
+    protected $recipientIdDateOfIssue;
 
     /**
      * ID/passport place of issue
@@ -67,7 +67,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("recipientIdPlaceOfIssue")
      */
-    private $recipientIdPlaceOfIssue;
+    protected $recipientIdPlaceOfIssue;
 
     /**
      * Bank name
@@ -77,7 +77,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankName")
      */
-    private $bankName;
+    protected $bankName;
 
     /**
      * Bank branch
@@ -87,7 +87,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankBranch")
      */
-    private $bankBranch;
+    protected $bankBranch;
 
     /**
      * Bank branch
@@ -97,7 +97,7 @@ final class CashToId extends ContactablePayout implements PayoutInterface
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankLocation")
      */
-    private $bankLocation;
+    protected $bankLocation;
 
     /**
      * @return string

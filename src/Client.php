@@ -24,6 +24,7 @@ namespace BitcoinVietnam\BitcoinVietnam;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PatchOrder\Order as OrderPatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order as OrderPostOrder;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\PayoutInterface;
+use BitcoinVietnam\BitcoinVietnam\Request\Withdrawal\PostWithdrawal\Withdrawal as WithdrawalPostWithdrawal;
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount;
 use BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints;
@@ -32,6 +33,7 @@ use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PostOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Prices\GetPrices;
+use BitcoinVietnam\BitcoinVietnam\Response\Withdrawal\PostWithdrawal;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -189,6 +191,22 @@ class Client
                 ->getBody()
                 ->getContents(),
             PostOrder::class,
+            'json'
+        );
+    }
+
+    /**
+     * @param WithdrawalPostWithdrawal $postWithdrawal
+     * @return PostWithdrawal
+     */
+    public function postWithdrawal(WithdrawalPostWithdrawal $postWithdrawal)
+    {
+        return $this->factory->utils()->serializer()->deserialize(
+            $this
+                ->sendRequest($this->factory->request()->withdrawal()->postWithdrawal()->setWithdrawal($postWithdrawal), 'POST')
+                ->getBody()
+                ->getContents(),
+            PostWithdrawal::class,
             'json'
         );
     }

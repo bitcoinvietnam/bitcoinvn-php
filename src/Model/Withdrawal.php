@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 Bitcoin Viet Nam Co., Ltd.
+ * Copyright (c) 2018 Bitcoin Viet Nam Co., Ltd.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  *  and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,42 +19,84 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Model\Payout;
+/**
+ * Created by PhpStorm.
+ * User: alexwinter
+ * Date: 07.02.18
+ * Time: 14:09
+ */
+
+namespace BitcoinVietnam\BitcoinVietnam\Model;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Bitcoin
- *
- * @package AppBundle\Api\Model\Payout
+ * Class Withdrawal
+ * @package BitcoinVietnam\BitcoinVietnam\Model
  */
-final class Bitcoin extends BasePayout
+class Withdrawal
 {
     /**
-     * Bitcoin address
-     *
      * @var string
      *
      * @Serializer\Type("string")
-     * @Serializer\SerializedName("address")
+     * @Serializer\SerializedName("id")
      */
-    private $address;
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("amount")
+     */
+    private $amount;
+
+    /**
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("currency")
+     */
+    private $currency;
+
+    /**
+     * @var Payout
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Payout")
+     * @Serializer\SerializedName("payout")
+     */
+    private $payout;
 
     /**
      * @return string
      */
-    public function getAddress()
+    public function getId()
     {
-        return $this->address;
+        return $this->id;
     }
 
     /**
-     * @param string $address
-     * @return Bitcoin
+     * @return Payout
      */
-    public function setAddress($address)
+    public function getPayout()
     {
-        $this->address = $address;
-        return $this;
+        return $this->payout;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
     }
 }
