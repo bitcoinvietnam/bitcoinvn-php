@@ -28,6 +28,14 @@ namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
 class Factory
 {
     /**
+     * @return AtmCard
+     */
+    public function atmCard()
+    {
+        return new AtmCard();
+    }
+
+    /**
      * @return Bank
      */
     public function bank()
