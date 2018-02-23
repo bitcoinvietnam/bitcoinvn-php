@@ -28,6 +28,8 @@
 
 namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Class AtmCard
  * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout
