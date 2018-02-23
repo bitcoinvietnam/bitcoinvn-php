@@ -22,7 +22,7 @@
 namespace BitcoinVietnam\BitcoinVietnam\Model;
 
 use BitcoinVietnam\BitcoinVietnam\Model\Payout\Bank;
-use BitcoinVietnam\BitcoinVietnam\Model\Payout\Bitcoin;
+use BitcoinVietnam\BitcoinVietnam\Model\Payout\Crypto;
 use BitcoinVietnam\BitcoinVietnam\Model\Payout\CashToId;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -41,12 +41,12 @@ class Payout
     private $bank;
 
     /**
-     * @var Bitcoin
+     * @var Crypto
      *
-     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Payout\Bitcoin")
-     * @Serializer\SerializedName("bitcoin")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Payout\Crypto")
+     * @Serializer\SerializedName("crypto")
      */
-    private $bitcoin;
+    private $crypto;
 
     /**
      * @var CashToId
@@ -76,20 +76,20 @@ class Payout
     }
 
     /**
-     * @return Bitcoin
+     * @return Crypto
      */
-    public function getBitcoin()
+    public function getCrypto()
     {
-        return $this->bitcoin;
+        return $this->crypto;
     }
 
     /**
-     * @param Bitcoin $bitcoin
+     * @param Crypto $crypto
      * @return Payout
      */
-    public function setBitcoin($bitcoin)
+    public function setCrypto($crypto)
     {
-        $this->bitcoin = $bitcoin;
+        $this->crypto = $crypto;
         return $this;
     }
 

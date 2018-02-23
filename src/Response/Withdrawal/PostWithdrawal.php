@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 Bitcoin Viet Nam Co., Ltd.
+ * Copyright (c) 2018 Bitcoin Viet Nam Co., Ltd.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  *  and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -19,49 +19,38 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout;
+/**
+ * Created by PhpStorm.
+ * User: alexwinter
+ * Date: 07.02.18
+ * Time: 14:06
+ */
 
+namespace BitcoinVietnam\BitcoinVietnam\Response\Withdrawal;
+
+use BitcoinVietnam\BitcoinVietnam\Model\Withdrawal;
+use BitcoinVietnam\BitcoinVietnam\Response\BaseResponse;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Bitcoin
- * @package BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Payout
+ * Class PostWithdrawal
+ * @package BitcoinVietnam\BitcoinVietnam\Response\Withdrawal
  */
-class Crypto implements PayoutInterface
+class PostWithdrawal extends BaseResponse
 {
     /**
-     * Bitcoin address
+     * @var Withdrawal
      *
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("address")
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Model\Withdrawal")
+     * @Serializer\SerializedName("withdrawal")
      */
-    protected $address;
+    private $withdrawal;
 
     /**
-     * @return string
+     * @return Withdrawal
      */
-    public function getPayoutDataSetter()
+    public function getWithdrawal()
     {
-        return 'setBitcoin';
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     * @return Crypto
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-        return $this;
+        return $this->withdrawal;
     }
 }

@@ -58,4 +58,12 @@ class Factory
     {
         return new Prices\Factory();
     }
+
+    /**
+     * @return Withdrawal\Factory
+     */
+    public function withdrawal()
+    {
+        return new Withdrawal\Factory();
+    }
 }

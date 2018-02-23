@@ -39,7 +39,7 @@ class Payout
      * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Bank")
      * @Serializer\SerializedName("bank")
      */
-    private $bank;
+    protected $bank;
 
     /**
      * @var Crypto
@@ -47,7 +47,7 @@ class Payout
      * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Crypto")
      * @Serializer\SerializedName("bitcoin")
      */
-    private $crypto;
+    protected $crypto;
 
     /**
      * @var CashToId
@@ -55,7 +55,7 @@ class Payout
      * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\CashToId")
      * @Serializer\SerializedName("cashToId")
      */
-    private $cashToId;
+    protected $cashToId;
 
     /**
      * @param PayoutInterface $payout
