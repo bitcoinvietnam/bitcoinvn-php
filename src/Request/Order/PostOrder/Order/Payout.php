@@ -21,6 +21,7 @@
 
 namespace BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order;
 
+use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\AtmCard;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Bank;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\Crypto;
 use BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\CashToId;
@@ -33,6 +34,14 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Payout
 {
+    /**
+     * @var AtmCard
+     *
+     * @Serializer\Type("BitcoinVietnam\BitcoinVietnam\Request\Order\PostOrder\Order\Payout\AtmCard")
+     * @Serializer\SerializedName("atmCard")
+     */
+    protected $atmCard;
+
     /**
      * @var Bank
      *
@@ -62,11 +71,30 @@ class Payout
      */
     public function setPayout(PayoutInterface $payout)
     {
+        $this->setAtmCard(null);
         $this->setBank(null);
         $this->setCrypto(null);
         $this->setCashToId(null);
 
         $this->{$payout->getPayoutDataSetter()}($payout);
+    }
+
+    /**
+     * @return AtmCard
+     */
+    public function getAtmCard()
+    {
+        return $this->atmCard;
+    }
+
+    /**
+     * @param AtmCard $atmCard
+     * @return Payout
+     */
+    public function setAtmCard($atmCard)
+    {
+        $this->atmCard = $atmCard;
+        return $this;
     }
 
     /**
