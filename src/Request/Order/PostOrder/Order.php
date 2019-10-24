@@ -117,6 +117,16 @@ class Order
     private $serviceProvider;
 
     /**
+     * Callback URL
+     *
+     * @var string
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("callbackUrl")
+     */
+    private $callbackUrl;
+
+    /**
      * PostOrder constructor.
      */
     public function __construct()
@@ -283,6 +293,24 @@ class Order
     public function setServiceProvider($serviceProvider)
     {
         $this->serviceProvider = $serviceProvider;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCallbackUrl()
+    {
+        return $this->callbackUrl;
+    }
+
+    /**
+     * @param string $callbackUrl
+     * @return Order
+     */
+    public function setCallbackUrl($callbackUrl)
+    {
+        $this->callbackUrl = $callbackUrl;
         return $this;
     }
 }
