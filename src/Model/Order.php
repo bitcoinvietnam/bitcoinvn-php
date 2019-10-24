@@ -136,6 +136,16 @@ class Order
     private $created;
 
     /**
+     * Will be true when an unconfirmed transaction has been seen on the blockchain (sell orders)
+     *
+     * @var bool
+     *
+     * @Serializer\Type("boolean")
+     * @Serializer\SerializedName("txPending")
+     */
+    private $txPending = false;
+
+    /**
      * True when paid
      *
      * @var bool
@@ -261,6 +271,14 @@ class Order
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTxPending()
+    {
+        return $this->txPending;
     }
 
     /**
