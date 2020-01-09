@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (c) 2017 Bitcoin Viet Nam Co., Ltd.
+ * Copyright (c) 2020 Bitcoin Viet Nam Co., Ltd.
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  *  and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -21,25 +21,15 @@
 
 namespace BitcoinVietnam\BitcoinVietnam\Request\Constants\Constraints;
 
-/**
- * Class Factory
- * @package BitcoinVietnam\BitcoinVietnam\Request\Constants\Constraints
- */
-class Factory
+use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
+
+class GetBankaccounts implements RequestInterface
 {
     /**
-     * @return GetBankaccounts
+     * @return string
      */
-    public function getBankaccounts()
+    public function getPath()
     {
-        return new GetBankaccounts();
-    }
-
-    /**
-     * @return GetConstraints
-     */
-    public function getConstraints()
-    {
-        return new GetConstraints();
+        return '/constants/bankaccounts';
     }
 }

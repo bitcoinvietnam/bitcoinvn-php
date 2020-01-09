@@ -28,6 +28,7 @@ use BitcoinVietnam\BitcoinVietnam\Request\Withdrawal\PostWithdrawal\Withdrawal a
 use BitcoinVietnam\BitcoinVietnam\Request\RequestInterface;
 use BitcoinVietnam\BitcoinVietnam\Response\Account\GetAccount;
 use BitcoinVietnam\BitcoinVietnam\Response\Constants\Constraints\GetConstraints;
+use BitcoinVietnam\BitcoinVietnam\Response\Constants\GetBankaccounts;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrder;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\GetOrders;
 use BitcoinVietnam\BitcoinVietnam\Response\Order\PatchOrder;
@@ -101,6 +102,20 @@ class Client
             'json'
         );
     }
+
+    /**
+     * @return GetBankaccounts\BankAccount[]
+     */
+    public function getBankaccounts()
+    {
+        return $this->factory->utils()->serializer()->deserialize(
+            $this->sendRequest($this->factory->request()->constants()->constraints()->getBankaccounts(), 'GET')->getBody()->getContents(),
+            'array<' . GetBankaccounts\BankAccount::class . '>',
+            'json'
+        );
+    }
+
+    // END CONSTANTS
 
     /**
      * @return GetPrices
