@@ -79,6 +79,14 @@ class Currency
     private $fixedFeeSell;
 
     /**
+     * @var float
+     *
+     * @Serializer\Type("float")
+     * @Serializer\SerializedName("networkFee")
+     */
+    private $networkFee;
+
+    /**
      * @return string
      */
     public function getName()
@@ -124,5 +132,13 @@ class Currency
     public function getFixedFeeSell()
     {
         return $this->fixedFeeSell;
+    }
+
+    /**
+     * @return float
+     */
+    public function getNetworkFee()
+    {
+        return $this->networkFee;
     }
 }
