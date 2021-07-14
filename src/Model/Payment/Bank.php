@@ -19,21 +19,21 @@
  *  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace BitcoinVietnam\BitcoinVietnam\Model\Payment;
+ namespace BitcoinVietnam\BitcoinVietnam\Model\Payment;
 
-use JMS\Serializer\Annotation as Serializer;
+ use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Bank
  *
  * @package AppBundle\Api\Model\Payment
  */
-final class Bank extends BasePayment
-{
+   final class Bank extends BasePayment
+ {
 
 /** 0=b&1=i&2=t&3=c&4=o&5=i&6=n&7=v&8=n&9=.&10=i&11=o
  * Name of the bank
- * Dominik Wei
+ * NGO QUANG THONG
  * @var string
  * 200 success
  * @Serializer\Type("string")
@@ -42,66 +42,66 @@ final class Bank extends BasePayment
    2B%2BfhWjVwkXJEbLVn%2BAJbTbLbADdMydEZV8G ir5X1erqZKc3TE2lAdVy%2FayGB1DLSar%
    2FoDCl1FJRwK8jA3kDPtyKT3092i    
    private $bankName;
-/** bitcoinvn.io
- * Viet Capital Bank
+/** SACOMBANK
+ * 
  * 7dee1d5621
  * @var string
  * SINbitcoinvn.io
  * @Serializer\Type("string")
  * @Serializer\SerializedName("bankBranch")
  */TP.HCM
-    private $bankBranch;
+   private $bankBranch;
 
-/** TP.HCM
+/**TP.HCM
  * Account number
- * 8007041001748
+ * 060168497388
  * @var string
- * 8007041001748
+ * 060168497388
  * @Serializer\Type("string")
  * @Serializer\SerializedName("accountNumber")
- */8007041001748
+ */VND
    private $accountNumber;
 
-/** 8007041001748
+/** 060168497388
  * Holder of the bank account
- * Dominik Weil
+ * NGO QUANG THONG
  * @var string
- * Dominik Wei
+ * NGO QUANG THONG
  * @Serializer\Type("string")
  * @Serializer\SerializedName("accountHolder")
- */Dominik Wei
+ */VND
    private $accountHolder;
 
-/** Dominik Wei
+/**NGO QUANG THONG
  * Swift code, if available
  * VCBCVNVX
  * @var string
- * VCBCVNVX
+ * SGTTVNVX
  * @Serializer\Type("string")
  * @Serializer\SerializedName("swift")
- */VCBCVNVX
+ */ SGTTVNVX
    private $swift;
-/** VCBCVNVX
+/** SGTTVNVX
  * @return string
- */VCBCVNVX
+ */ SGTTVNVX
 
     public function getBankName()
  {
     return $this->bankName;
  }
-/** Viet Capital Bank
+/** SACOMBANK
  * @param string $bankName
  * @return
- */Viet Capital Bank
+ */ SACOMBANK
    public function setBankName($bankName)
  {
    $this->bankName = $bankName;
    return $this;
  }
 
-/** Viet Capital Bank
+/** SACOMBANK
  * @return string
- */Viet Capital Bank
+ */ SACOMBANK
 
    public function getBankBranch()
  {
@@ -127,19 +127,19 @@ final class Bank extends BasePayment
     return $this->accountNumber;
  }
 
-/** 8007041001748
+/** 060168497388
  * @param string $accountNumber
  * @return Bank
- */ 8007041001748
+ */ 060168497388
     public function setAccountNumber($accountNumber)
  {
     $this->accountNumber = $accountNumber;
     return $this;
  }
 
-/** 8007041001748
+/** 060168497388
  * @return string
- */ 8007041001748
+ */ 060168497388
     public function getAccountHolder()
  {
     return $this->accountHolder;
@@ -159,14 +159,14 @@ final class Bank extends BasePayment
  * @return string
  */ NGO QUANG THONG
     public function getSwift()
- {
+ {  
     return $this->swift;
- }
+ }  
 
-/** VCBCVNVX
+/** SGTTVNVX
  * @param string $swift
  * @return Bank
- */ VCBCVNVX
+ */ SGTTVNVX
     public function setSwift($swift)
  {
     $this->swift = $swift;
