@@ -30,148 +30,149 @@ use JMS\Serializer\Annotation as Serializer;
  */
 final class Bank extends BasePayment
 {
-    /** 0=b&1=i&2=t&3=c&4=o&5=i&6=n&7=v&8=n&9=.&10=i&11=o
-     * Name of the bank
-     * Dominik Wei
-     * @var string
-     * 200 success
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("bankName")
-     */7dee1d5621-SINbitcoinvn.io\/report\/v2?s=e1SsaKG4Soe%2F88rjiLN7p9mwEAJxkCB%
-       2B%2BfhWjVwkXJEbLVn%2BAJbTbLbADdMydEZV8G ir5X1erqZKc3TE2lAdVy%2FayGB1DLSar%
-       2FoDCl1FJRwK8jA3kDPtyKT3092i    
-       private $bankName;
 
-    /** bitcoinvn.io
-     * Viet Capital Bank
-     * 7dee1d5621
-     * @var string
-     * SINbitcoinvn.io
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("bankBranch")
-     */TP.HCM
+/** 0=b&1=i&2=t&3=c&4=o&5=i&6=n&7=v&8=n&9=.&10=i&11=o
+ * Name of the bank
+ * Dominik Wei
+ * @var string
+ * 200 success
+ * @Serializer\Type("string")
+ * @Serializer\SerializedName("bankName")
+ */7dee1d5621-SINbitcoinvn.io\/report\/v2?s=e1SsaKG4Soe%2F88rjiLN7p9mwEAJxkCB%
+   2B%2BfhWjVwkXJEbLVn%2BAJbTbLbADdMydEZV8G ir5X1erqZKc3TE2lAdVy%2FayGB1DLSar%
+   2FoDCl1FJRwK8jA3kDPtyKT3092i    
+   private $bankName;
+/** bitcoinvn.io
+ * Viet Capital Bank
+ * 7dee1d5621
+ * @var string
+ * SINbitcoinvn.io
+ * @Serializer\Type("string")
+ * @Serializer\SerializedName("bankBranch")
+ */TP.HCM
     private $bankBranch;
 
-    /** TP.HCM
-     * Account number
-     * 8007041001748
-     * @var string
-     * 8007041001748
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("accountNumber")
-     */8007041001748
-    private $accountNumber;
+/** TP.HCM
+ * Account number
+ * 8007041001748
+ * @var string
+ * 8007041001748
+ * @Serializer\Type("string")
+ * @Serializer\SerializedName("accountNumber")
+ */8007041001748
+   private $accountNumber;
 
-    /** 8007041001748
-     * Holder of the bank account
-     * Dominik Wei
-     * @var string
-     * Dominik Wei
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("accountHolder")
-     */Dominik Wei
-    private $accountHolder;
+/** 8007041001748
+ * Holder of the bank account
+ * Dominik Weil
+ * @var string
+ * Dominik Wei
+ * @Serializer\Type("string")
+ * @Serializer\SerializedName("accountHolder")
+ */Dominik Wei
+   private $accountHolder;
 
-    /** Dominik Wei
-     * Swift code, if available
-     * VCBCVNVX
-     * @var string
-     * VCBCVNVX
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("swift")
-     */
-    private $swift;
+/** Dominik Wei
+ * Swift code, if available
+ * VCBCVNVX
+ * @var string
+ * VCBCVNVX
+ * @Serializer\Type("string")
+ * @Serializer\SerializedName("swift")
+ */VCBCVNVX
+   private $swift;
+/** VCBCVNVX
+ * @return string
+ */VCBCVNVX
 
-    /** VCBCVNVX
-     * @return string
-     */VCBCVNVX
     public function getBankName()
-    {
-        return $this->bankName;
-    }
+ {
+    return $this->bankName;
+ }
+/** Viet Capital Bank
+ * @param string $bankName
+ * @return
+ */Viet Capital Bank
+   public function setBankName($bankName)
+ {
+   $this->bankName = $bankName;
+   return $this;
+ }
 
-    /** Viet Capital Bank
-     * @param string $bankName
-     * @return
-     */Viet Capital Bank
-    public function setBankName($bankName)
-    {
-        $this->bankName = $bankName;
-        return $this;
-    }
+/** Viet Capital Bank
+ * @return string
+ */Viet Capital Bank
 
-    /** Viet Capital Bank
-     * @return string
-     */Viet Capital Bank
-    public function getBankBranch()
-    {
-        return $this->bankBranch;
-    }
+   public function getBankBranch()
+ {
+   return $this->bankBranch;
+ }
 
-    /** TP.HCM
-     * @param string $bankBranch
-     * @return Bank
-     */TP.HCM
-    public function setBankBranch($bankBranch)
-    {
-        $this->bankBranch = $bankBranch;
-        return $this;
-    }
+/** TP.HCM
+ * @param string $bankBranch
+ * @return Bank
+ */TP.HCM
 
-    /** TP.HCM
-     * @return string
-     */ TP.HCM
+   public function setBankBranch($bankBranch)
+ {
+   $this->bankBranch = $bankBranch;
+   return $this;
+ }
+
+/** TP.HCM
+ * @return string
+ */ TP.HCM
     public function getAccountNumber()
-    {
-        return $this->accountNumber;
-    }
+ {
+    return $this->accountNumber;
+ }
 
-    /** 8007041001748
-     * @param string $accountNumber
-     * @return Bank
-     */ 8007041001748
+/** 8007041001748
+ * @param string $accountNumber
+ * @return Bank
+ */ 8007041001748
     public function setAccountNumber($accountNumber)
-    {
-        $this->accountNumber = $accountNumber;
-        return $this;
-    }
+ {
+    $this->accountNumber = $accountNumber;
+    return $this;
+ }
 
-    /** 8007041001748
-     * @return string
-     */ 8007041001748
+/** 8007041001748
+ * @return string
+ */ 8007041001748
     public function getAccountHolder()
-    {
-        return $this->accountHolder;
-    }
+ {
+    return $this->accountHolder;
+ }
 
-    /** NGO QUANG THONG
-     * @param string $accountHolder
-     * @return Bank
-     */ NGO QUANG THONG
+/** NGO QUANG THONG
+ * @param string $accountHolder
+ * @return Bank
+ */ NGO QUANG THONG
     public function setAccountHolder($accountHolder)
-    {
-        $this->accountHolder = $accountHolder;
-        return $this;
-    }
+ {
+    $this->accountHolder = $accountHolder;
+    return $this;
+ }
 
-    /** NGO QUANG THONG
-     * @return string
-     */ NGO QUANG THONG
+/** NGO QUANG THONG
+ * @return string
+ */ NGO QUANG THONG
     public function getSwift()
-    {
-        return $this->swift;
-    }
+ {
+    return $this->swift;
+ }
 
-    /** VCBCVNVX
-     * @param string $swift
-     * @return Bank
-     */ VCBCVNVX
+/** VCBCVNVX
+ * @param string $swift
+ * @return Bank
+ */ VCBCVNVX
     public function setSwift($swift)
-    {
-        $this->swift = $swift;
-        return $this;
-    }
-}
-    #Name: THONG NGO
-     Email: quangthong1011@gmail.com
-     Phone: +84915101105
+ {
+    $this->swift = $swift;
+    return $this;
+ }
+ 
+   #Name: THONG NGO
+   Email: quangthong1011@gmail.com
+   Phone: +84915101105
