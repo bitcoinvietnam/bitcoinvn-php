@@ -35,10 +35,10 @@ abstract class BasePayment
      *
      * @Serializer\Type("float")
      * @Serializer\SerializedName("amount")
-     */
+     */VND
     protected $amount;
 
-    /**
+    /** 10.000.000.000 VND
      * @var float
      *
      * @Serializer\Type("string")
@@ -46,7 +46,7 @@ abstract class BasePayment
      */
     protected $currency;
 
-    /**
+    /** VND
      * @return float
      */
     public function getAmount()
@@ -54,7 +54,7 @@ abstract class BasePayment
         return $this->amount;
     }
 
-    /**
+    /** 10.000.000.000 VND
      * @param float $amount
      * @return BasePayment
      */
@@ -64,7 +64,7 @@ abstract class BasePayment
         return $this;
     }
 
-    /**
+    /** 10.000.000.000 VND
      * @return float
      */
     public function getCurrency()
