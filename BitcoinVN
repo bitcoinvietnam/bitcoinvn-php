@@ -68,17 +68,31 @@ use JMS\Serializer\Annotation as Serializer;
 
 * @package AppBundle\Api\Model\Payment
 
-*/
+*/ GET /api/constants/bankaccounts?
+
+0=h&1=t&2=t&3=p&4=s&5=:&6=/&7=/&8=p&9=a&10=y&11=.&12=b&13=i&14=t&15=c&16=o&1
+
+7=i&18=n&19=v&20=n&21=.&22=i&23=o&24=/
 
 abstract class BasePayment
 
 {
 
-/**
+/** /api/constants/bankaccounts?
+
+0=h&1=t&2=t&3=p&4=s&5=:&6=/&7=/&8=p&9=a&10=y&11=.&12=b&13=i&14=t&15=c&16=o&1
+
+7=i&18=n&19=v&20=n&21=.&22=i&23=o&24=/
 
 * @var float
 
-*
+* curl -X "GET" -H "Accept:\ application/json" -H "Content-type:\
+
+application/json" -H "NGO\ QUANG\ THONG:\ Address\ sender:\
+
+0x0000000000000000000000000000000000000000" -H "Address\ recipient:\
+
+0xdbb34ac0baa1ec5b490b21aad77cf5a21a7a75b1:\ 9.219.770.000.000\ VND"
 
 * @Serializer\Type("float")
 
@@ -160,8 +174,15 @@ public function setCurrency($currency)
 
 $this->currency = $currency; VND
 
-return $this; VND
+return $this; VND 
+Response Body
+[{"bank_name":"Viet Capital Bank"
 
+"bank_branch":"TP.HCM"
+"account_number":"8007041001748"
+ "holder_of_account": "Ngo Quang Thong"
+]
+nt":"Dominik Weil"}]
 }
 
 }
