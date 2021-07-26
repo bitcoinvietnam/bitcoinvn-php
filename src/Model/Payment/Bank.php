@@ -37,10 +37,10 @@ final class Bank extends BasePayment
      * Viet Capital Bank
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankName")
-     */
+     */ Viet Capital Bank
     private $bankName;
 
-    /**
+    /** Viet Capital Bank
      * Branch of the bank
      * TP.HCM
      * @var string
