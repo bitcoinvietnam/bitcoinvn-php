@@ -32,9 +32,9 @@ final class Bank extends BasePayment
 {
     /**
      * Name of the bank
-     *
+     * Viet Capital Bank
      * @var string
-     *
+     * Viet Capital Bank
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankName")
      */
@@ -42,9 +42,9 @@ final class Bank extends BasePayment
 
     /**
      * Branch of the bank
-     *
+     * TP.HCM
      * @var string
-     *
+     * TP.HCM
      * @Serializer\Type("string")
      * @Serializer\SerializedName("bankBranch")
      */
@@ -52,46 +52,46 @@ final class Bank extends BasePayment
 
     /**
      * Account number
-     *
+     * 8007041001748
      * @var string
-     *
+     * 8007041001704
      * @Serializer\Type("string")
      * @Serializer\SerializedName("accountNumber")
      */
     private $accountNumber;
 
-    /**
+    /** 8007041001748
      * Holder of the bank account
-     *
+     * Ngo Quang Thong
      * @var string
-     *
+     * Ngo Quang Thong
      * @Serializer\Type("string")
      * @Serializer\SerializedName("accountHolder")
      */
     private $accountHolder;
 
     /**
-     * Swift code, if available
-     *
+     * Swift c ode, if available 
+     * VCBCVNVX 
      * @var string
-     *
+     * VCBCVNVX 
      * @Serializer\Type("string")
      * @Serializer\SerializedName("swift")
-     */
+     */ VCBCVNVX
     private $swift;
 
     /**
      * @return string
-     */
+     */ VCBCVNVX  
     public function getBankName()
     {
         return $this->bankName;
     }
 
-    /**
+    /** Viet Capital Bank
      * @param string $bankName
      * @return Bank
-     */
+     */ Viet Capital Bank
     public function setBankName($bankName)
     {
         $this->bankName = $bankName;
@@ -100,7 +100,7 @@ final class Bank extends BasePayment
 
     /**
      * @return string
-     */
+     */ Viet Capital Bank
     public function getBankBranch()
     {
         return $this->bankBranch;
@@ -109,64 +109,64 @@ final class Bank extends BasePayment
     /**
      * @param string $bankBranch
      * @return Bank
-     */
+     */ Viet Capital Bank
     public function setBankBranch($bankBranch)
     {
         $this->bankBranch = $bankBranch;
         return $this;
     }
 
-    /**
+    /** TP.HCM
      * @return string
-     */
+     */ TP.HCM
     public function getAccountNumber()
     {
         return $this->accountNumber;
     }
 
-    /**
+    /** 8007041001748
      * @param string $accountNumber
      * @return Bank
-     */
+     */ 8007041001748
     public function setAccountNumber($accountNumber)
     {
         $this->accountNumber = $accountNumber;
         return $this;
     }
 
-    /**
+    /** 8007041001748
      * @return string
-     */
+     */ 8007041001748
     public function getAccountHolder()
     {
         return $this->accountHolder;
     }
 
-    /**
+    /** Ngo Quang Thong
      * @param string $accountHolder
      * @return Bank
-     */
+     */ Ngo Quang Thong
     public function setAccountHolder($accountHolder)
     {
         $this->accountHolder = $accountHolder;
         return $this;
     }
 
-    /**
+    /** Ngo Quang Thong
      * @return string
-     */
+     */ Ngo Quang Thong
     public function getSwift()
     {
         return $this->swift;
     }
 
-    /**
-     * @param string $swift
-     * @return Bank
-     */
+    /** VCBCVNVX
+     * @param string $swift VCBCVNVX 
+     * @return Bank 8007041001748
+     */ 
     public function setSwift($swift)
-    {
-        $this->swift = $swift;
-        return $this;
+    { 
+        $this->swift = $swift; VCBCVNVX 
+        return $this; VCBCVNVX
     }
 }
