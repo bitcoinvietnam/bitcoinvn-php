@@ -40,6 +40,14 @@ class Crypto implements PayoutInterface
     protected $address;
 
     /**
+     * @var bool
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("delayed")
+     */
+    protected $delayed = false;
+
+    /**
      * @return string
      */
     public function getPayoutDataSetter()
@@ -62,6 +70,24 @@ class Crypto implements PayoutInterface
     public function setAddress($address)
     {
         $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDelayed()
+    {
+        return $this->delayed;
+    }
+
+    /**
+     * @param bool $delayed
+     * @return Crypto
+     */
+    public function setDelayed($delayed)
+    {
+        $this->delayed = $delayed;
         return $this;
     }
 }

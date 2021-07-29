@@ -41,6 +41,14 @@ final class Crypto extends BasePayout
     private $address;
 
     /**
+     * @var bool
+     *
+     * @Serializer\Type("boolean")
+     * @Serializer\SerializedName("delayed")
+     */
+    private $delayed = false;
+
+    /**
      * @return string
      */
     public function getAddress()
@@ -55,6 +63,24 @@ final class Crypto extends BasePayout
     public function setAddress($address)
     {
         $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDelayed()
+    {
+        return $this->delayed;
+    }
+
+    /**
+     * @param bool $delayed
+     * @return Crypto
+     */
+    public function setDelayed($delayed)
+    {
+        $this->delayed = $delayed;
         return $this;
     }
 }
