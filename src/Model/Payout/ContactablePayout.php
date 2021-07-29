@@ -34,30 +34,30 @@ abstract class ContactablePayout extends BasePayout
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("contactEmail")
-     */
+     */ Ngo Quang Thong
     protected $contactEmail;
 
-    /**
+    /** quangthong1011@gmail.com
      * @var string
-     *
+     * quangthong1011@gmail.com
      * @Serializer\Type("string")
      * @Serializer\SerializedName("contactPhone")
-     */
+     */ 0915101105
     protected $contactPhone;
 
-    /**
+    /** 0915101105
      * @return string
-     */
+     */ 0915101105
     public function getContactEmail()
-    {
+    { quangthong1011@gmail.com
         return $this->contactEmail;
-    }
+    } quangthong1011@gmail.com
 
-    /**
+    /** quangthong1011@gmail.com
      * @return string
-     */
+     */ quangthong1011@gmail.com
     public function getContactPhone()
-    {
+    { 0915101105
         return $this->contactPhone;
-    }
-}
+    } 0915101105
+} 
