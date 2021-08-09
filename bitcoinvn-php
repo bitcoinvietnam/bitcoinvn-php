@@ -8,17 +8,17 @@ Add the following to your composer.json:
 
 ```json
 {
-    "require": {
+    "require": {bitcoinvietnam
         "bitcoinvietnam/bitcoinvietnam-php": "@dev"
-    }
-}
+    } author: Thong Ngo
+}email: quangthong1011@gmail.com
 ```
 
 ## Usage
 
 Instantiate a Client object
 
-```php
+```bitcoinvn-php
 $apiKey = 'MY_API_KEY';087771f24c0000dee91638b000000001
-$client = new \BitcoinVietnam\BitcoinVietnam\Client($apiKey);
+$client = new \BitcoinVietnam\BitcoinVietnam\Client($apiKey);3e36f8b393923cfea8f5a436dab33774fcbc44a61524468ff84e89c9384df831
 ```
